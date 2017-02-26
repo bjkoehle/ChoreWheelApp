@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1"
+    p1:gravity="center_horizontal">
+    <TextView
+        p1:text="Chore Wheel"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView1"
+        p1:capitalize="none"
+        p1:textColor="@android:color/holo_blue_bright"
+        p1:textSize="@android:dimen/app_icon_size"
+        p1:shadowColor="#fff0ffff"
+        p1:layout_marginRight="0.0dp"
+        p1:layout_marginLeft="0.0dp"
+        p1:layout_gravity="center_horizontal" />
+    <ImageView
+        p1:layout_width="match_parent"
+        p1:layout_height="match_parent"
+        p1:id="@+id/imageView1"
+        p1:layout_gravity="center_vertical"
+        p1:src="@drawable/wheel_1" />
+</LinearLayout>
