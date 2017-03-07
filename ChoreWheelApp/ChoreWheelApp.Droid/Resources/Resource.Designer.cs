@@ -2200,11 +2200,14 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f0200a0
 			public const int mr_ic_play_light = 2130837664;
 			
-			// aapt resource value: 0x7f0200a2
-			public const int notification_template_icon_bg = 2130837666;
+			// aapt resource value: 0x7f0200a3
+			public const int notification_template_icon_bg = 2130837667;
 			
 			// aapt resource value: 0x7f0200a1
 			public const int wheel_1 = 2130837665;
+			
+			// aapt resource value: 0x7f0200a2
+			public const int yellowCircle = 2130837666;
 			
 			static Drawable()
 			{
@@ -2522,6 +2525,9 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f070046
 			public const int parentPanel = 2131165254;
 			
+			// aapt resource value: 0x7f07009c
+			public const int picBtn = 2131165340;
+			
 			// aapt resource value: 0x7f070029
 			public const int pin = 2131165225;
 			
@@ -2671,6 +2677,9 @@ namespace ChoreWheelApp.Droid
 			
 			// aapt resource value: 0x7f070014
 			public const int useLogo = 2131165204;
+			
+			// aapt resource value: 0x7f07009b
+			public const int userProfilePic = 2131165339;
 			
 			// aapt resource value: 0x7f07000a
 			public const int view_offset_helper = 2131165194;
@@ -2926,6 +2935,9 @@ namespace ChoreWheelApp.Droid
 			
 			// aapt resource value: 0x7f030037
 			public const int support_simple_spinner_dropdown_item = 2130903095;
+			
+			// aapt resource value: 0x7f030038
+			public const int UserProfilePage = 2130903096;
 			
 			static Layout()
 			{
