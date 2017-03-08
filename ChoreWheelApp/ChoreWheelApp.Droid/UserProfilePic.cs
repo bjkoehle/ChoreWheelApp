@@ -20,7 +20,7 @@ namespace ChoreWheelApp.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.UserProfilePage);
+            SetContentView(Resource.Layout.UserProfileEdit);
             _imageView = FindViewById<ImageView>(Resource.Id.userProfilePic);
             Button button = FindViewById<Button>(Resource.Id.picBtn);
             button.Click += ButtonOnClick;

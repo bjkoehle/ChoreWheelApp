@@ -2381,6 +2381,9 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f070038
 			public const int @fixed = 2131165240;
 			
+			// aapt resource value: 0x7f07009d
+			public const int frameLayout1 = 2131165341;
+			
 			// aapt resource value: 0x7f070005
 			public const int home = 2131165189;
 			
@@ -2540,6 +2543,9 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f070054
 			public const int radio = 2131165268;
 			
+			// aapt resource value: 0x7f07009e
+			public const int relativeLayout1 = 2131165342;
+			
 			// aapt resource value: 0x7f070030
 			public const int right = 2131165232;
 			
@@ -2654,6 +2660,9 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f070073
 			public const int textView1 = 2131165299;
 			
+			// aapt resource value: 0x7f0700a0
+			public const int textView2 = 2131165344;
+			
 			// aapt resource value: 0x7f070094
 			public const int time = 2131165332;
 			
@@ -2677,6 +2686,9 @@ namespace ChoreWheelApp.Droid
 			
 			// aapt resource value: 0x7f070014
 			public const int useLogo = 2131165204;
+			
+			// aapt resource value: 0x7f07009f
+			public const int userName = 2131165343;
 			
 			// aapt resource value: 0x7f07009b
 			public const int userProfilePic = 2131165339;
@@ -2937,7 +2949,7 @@ namespace ChoreWheelApp.Droid
 			public const int support_simple_spinner_dropdown_item = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int UserProfilePage = 2130903096;
+			public const int UserProfileEdit = 2130903096;
 			
 			static Layout()
 			{

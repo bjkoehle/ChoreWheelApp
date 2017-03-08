@@ -107,7 +107,7 @@
     <AndroidResource Include="Resources\Layout\FrontPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\Layout\UserProfilePage.axml">
+    <AndroidResource Include="Resources\Layout\UserProfileEdit.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
