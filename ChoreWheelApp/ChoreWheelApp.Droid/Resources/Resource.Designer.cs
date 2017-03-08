@@ -2384,6 +2384,9 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f07009d
 			public const int frameLayout1 = 2131165341;
 			
+			// aapt resource value: 0x7f0700a5
+			public const int groupName = 2131165349;
+			
 			// aapt resource value: 0x7f070005
 			public const int home = 2131165189;
 			
@@ -2663,6 +2666,12 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f0700a0
 			public const int textView2 = 2131165344;
 			
+			// aapt resource value: 0x7f0700a2
+			public const int textView3 = 2131165346;
+			
+			// aapt resource value: 0x7f0700a4
+			public const int textView4 = 2131165348;
+			
 			// aapt resource value: 0x7f070094
 			public const int time = 2131165332;
 			
@@ -2687,8 +2696,23 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f070014
 			public const int useLogo = 2131165204;
 			
+			// aapt resource value: 0x7f0700a3
+			public const int userEmail = 2131165347;
+			
+			// aapt resource value: 0x7f0700a8
+			public const int userEmailD = 2131165352;
+			
 			// aapt resource value: 0x7f07009f
 			public const int userName = 2131165343;
+			
+			// aapt resource value: 0x7f0700a6
+			public const int userNameD = 2131165350;
+			
+			// aapt resource value: 0x7f0700a1
+			public const int userNickname = 2131165345;
+			
+			// aapt resource value: 0x7f0700a7
+			public const int userNicknameD = 2131165351;
 			
 			// aapt resource value: 0x7f07009b
 			public const int userProfilePic = 2131165339;
@@ -2950,6 +2974,9 @@ namespace ChoreWheelApp.Droid
 			
 			// aapt resource value: 0x7f030038
 			public const int UserProfileEdit = 2130903096;
+			
+			// aapt resource value: 0x7f030039
+			public const int UserProfilePage = 2130903097;
 			
 			static Layout()
 			{

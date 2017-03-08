@@ -15,6 +15,7 @@ namespace ChoreWheelApp.Droid
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+            SetContentView(Resource.Layout.FrontPage);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 			LoadApplication (new ChoreWheelApp.App ());
