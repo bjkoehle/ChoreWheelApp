@@ -12,8 +12,8 @@ using Android.Widget;
 
 namespace ChoreWheelApp.Droid
 {
-    [Activity(Label = "UserProfilePage")]
-    public class UserProfilePage : Activity
+    [Activity(Label = "UserProfilePageC")]
+    public class UserProfilePageC : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

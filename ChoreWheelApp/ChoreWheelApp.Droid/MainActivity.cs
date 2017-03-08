@@ -17,10 +17,10 @@ namespace ChoreWheelApp.Droid
 		{
 			base.OnCreate (bundle);
             SetContentView(Resource.Layout.FrontPage);
-            Button button = FindViewById<Button>(Resource.Id.start);
-            button.Click += delegate
+            Button start_button = FindViewById<Button>(Resource.Id.start);
+            start_button.Click += (sender,e) =>
             {
-                var secondActivity = new Intent(this, typeof(UserProfilePage));
+                var secondActivity = new Intent(this, typeof(UserProfilePageC));
                 StartActivity(secondActivity);
             };
             global::Xamarin.Forms.Forms.Init (this, bundle);

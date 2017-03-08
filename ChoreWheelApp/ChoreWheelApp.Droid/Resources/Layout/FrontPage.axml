@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
-    p1:orientation="vertical"
-    p1:layout_width="match_parent"
-    p1:layout_height="match_parent"
-    p1:id="@+id/linearLayout1"
-    p1:gravity="center_horizontal">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/linearLayout1"
+    android:gravity="center_horizontal">
     <TextView
-        p1:text="Chore Wheel"
-        p1:textAppearance="?android:attr/textAppearanceLarge"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/textView1"
-        p1:capitalize="none"
-        p1:textColor="@android:color/holo_blue_bright"
-        p1:textSize="@android:dimen/app_icon_size"
-        p1:shadowColor="#fff0ffff"
-        p1:layout_marginRight="0.0dp"
-        p1:layout_marginLeft="0.0dp"
-        p1:layout_gravity="center_horizontal" />
+        android:text="Chore Wheel"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:capitalize="none"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="@android:dimen/app_icon_size"
+        android:shadowColor="#fff0ffff"
+        android:layout_marginRight="0.0dp"
+        android:layout_marginLeft="0.0dp"
+        android:layout_gravity="center_horizontal" />
     <Button
-        p1:id="@+id/start"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/textView1"
-        p1:text="start"
-        p1:layout_gravity="center_horizontal" />
+        android:text="Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/start"
+        android:layout_gravity="center_horizontal" />
     <ImageView
-        p1:layout_width="match_parent"
-        p1:layout_height="match_parent"
-        p1:id="@+id/imageView1"
-        p1:layout_gravity="center_vertical"
-        p1:src="@drawable/wheel_1"
-        p1:layout_marginBottom="40.0dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView1"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/wheel_1"
+        android:layout_marginBottom="40.0dp" />
 </LinearLayout>

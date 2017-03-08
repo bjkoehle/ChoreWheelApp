@@ -98,6 +98,14 @@
                 android:text="Group Name"
                 android:layout_alignTop="@id/textView4"
                 android:layout_marginLeft="70dip" />
+            <Button
+                android:text="Submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileSubmit"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@id/textView4"
+                android:layout_centerInParent="true" />
         </RelativeLayout>
     </FrameLayout>
 </LinearLayout>
