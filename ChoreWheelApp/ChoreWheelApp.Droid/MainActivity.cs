@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Content;
 
 namespace ChoreWheelApp.Droid
 {
@@ -16,8 +17,13 @@ namespace ChoreWheelApp.Droid
 		{
 			base.OnCreate (bundle);
             SetContentView(Resource.Layout.FrontPage);
-
-			global::Xamarin.Forms.Forms.Init (this, bundle);
+            Button button = FindViewById<Button>(Resource.Id.start);
+            button.Click += delegate
+            {
+                var secondActivity = new Intent(this, typeof(UserProfilePage));
+                StartActivity(secondActivity);
+            };
+            global::Xamarin.Forms.Forms.Init (this, bundle);
 			LoadApplication (new ChoreWheelApp.App ());
 		}
 	}
