@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26127.0
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ChoreWheelApp", "ChoreWheelApp\ChoreWheelApp\ChoreWheelApp.shproj", "{360249C7-A568-4570-9B5C-02AB7E2B57DF}"
 EndProject
@@ -14,6 +14,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ChoreWheelApp\ChoreWheelApp\ChoreWheelApp.projitems*{360249c7-a568-4570-9b5c-02ab7e2b57df}*SharedItemsImports = 13
+		ChoreWheelApp\ChoreWheelApp\ChoreWheelApp.projitems*{43d08e16-2832-49e8-a895-41ade23d158f}*SharedItemsImports = 4
 		ChoreWheelApp\ChoreWheelApp\ChoreWheelApp.projitems*{c9844eeb-006e-4d8f-b458-c044116f7fe5}*SharedItemsImports = 4
 		ChoreWheelApp\ChoreWheelApp\ChoreWheelApp.projitems*{d164f63d-1ddc-4551-81c2-4a50caf5b473}*SharedItemsImports = 4
 	EndGlobalSection

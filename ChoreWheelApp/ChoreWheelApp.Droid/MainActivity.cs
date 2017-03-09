@@ -16,13 +16,7 @@ namespace ChoreWheelApp.Droid
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-            SetContentView(Resource.Layout.FrontPage);
-            Button start_button = FindViewById<Button>(Resource.Id.start);
-            start_button.Click += (sender,e) =>
-            {
-                var secondActivity = new Intent(this, typeof(UserProfilePageC));
-                StartActivity(secondActivity);
-            };
+            
             global::Xamarin.Forms.Forms.Init (this, bundle);
 			LoadApplication (new ChoreWheelApp.App ());
 		}

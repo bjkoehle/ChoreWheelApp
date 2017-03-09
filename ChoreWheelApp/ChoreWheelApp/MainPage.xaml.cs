@@ -11,7 +11,18 @@ namespace ChoreWheelApp
 	{
 		public MainPage()
 		{
-			InitializeComponent();
-		}
-	}
+			InitializeComponent(); //THIS NEEDS TO STAY 100% of the time
+
+            
+           
+        }
+
+        void CalculateTip(bool roundUp, bool roundDown)
+        {
+            
+        }
+
+        void OnNormalTip(object sender, EventArgs e) {  }
+        void OnGenerousTip(object sender, EventArgs e) {  }
+    }
 }

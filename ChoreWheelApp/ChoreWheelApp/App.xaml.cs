@@ -11,9 +11,13 @@ namespace ChoreWheelApp
 	{
 		public App ()
 		{
-			InitializeComponent();
+			InitializeComponent();  //DO NOT TOUCH THESE
 
 			MainPage = new ChoreWheelApp.MainPage();
+            //////////////////////////////////////////////////
+
+
+
 		}
 
 		protected override void OnStart ()
