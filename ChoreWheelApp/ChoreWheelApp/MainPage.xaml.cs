@@ -7,22 +7,11 @@ using Xamarin.Forms;
 
 namespace ChoreWheelApp
 {
-	public partial class MainPage : ContentPage
-	{
-		public MainPage()
-		{
-			InitializeComponent(); //THIS NEEDS TO STAY 100% of the time
-
-            
-           
-        }
-
-        void CalculateTip(bool roundUp, bool roundDown)
+    public partial class MainPage : ContentPage
+    {
+        public MainPage()
         {
-            
+            InitializeComponent();
         }
-
-        void OnNormalTip(object sender, EventArgs e) {  }
-        void OnGenerousTip(object sender, EventArgs e) {  }
     }
 }

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <color name="platform_appcompat_background">#ffffffff</color>
-  <style name="Theme.Custom" parent="@android:style/Platform.AppCompat">
-    <item name="android:colorBackground">@color/platform_appcompat_background</item>
-    <item name="android:windowBackground">?android:attr/colorBackground</item>
-  </style>
-</resources>
