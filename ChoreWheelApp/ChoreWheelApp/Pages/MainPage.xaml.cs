@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace ChoreWheelApp
+namespace ChoreWheelApp.Pages
 {
     public partial class MainPage : ContentPage
     {

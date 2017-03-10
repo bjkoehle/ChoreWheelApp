@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChoreWheelApp.Pages.Login"
+             BackgroundColor="#7cdb41"
+             Padding="20">
+    
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+        <Entry Placeholder="Enter email:"
+               x:Name="emailEntry"
+               HorizontalOptions="Fill"/>
+        <Entry IsPassword="True"
+               x:Name="passwordEntry"
+               Placeholder="Enter Password:"
+               HorizontalOptions="Fill"/>
+        <Button Text="Login"
+                BackgroundColor="#09b203"
+                TextColor="White"
+                HorizontalOptions="Fill"
+                BorderRadius="35"
+                Clicked="OnLoginClicked"/>
+        <Label x:Name="messageLabel"/>
+        <Label Text="Don't have an account?"
+               HorizontalOptions="CenterAndExpand"/>
+        <Button Text="Register"
+                BackgroundColor="#09b203"
+                TextColor="White"
+                WidthRequest="150"
+                BorderRadius="35"
+                HorizontalOptions="Center">
+        </Button>
+    </StackLayout>
+</ContentPage>
