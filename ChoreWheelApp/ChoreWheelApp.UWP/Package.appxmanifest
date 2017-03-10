@@ -6,12 +6,12 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
-  <Identity 
-    Name="b0aa7ed4-1ccc-4b5e-b682-074bb7157b8a"
+  <Identity
+    Name="eaa58074-3029-479b-948e-36ab6eda1970"
     Publisher="CN=Brendan"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="f736c883-f105-4d30-a719-4bf328872f5e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="eaa58074-3029-479b-948e-36ab6eda1970" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ChoreWheelApp.UWP</DisplayName>
@@ -29,13 +29,13 @@
 
   <Applications>
     <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="ChoreWheelApp.UWP.App">
+      Executable="$targetnametoken$.exe"
+      EntryPoint="ChoreWheelApp.UWP.App">
       <uap:VisualElements
         DisplayName="ChoreWheelApp.UWP"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="FPCL.WIndows"
+        Description="ChoreWheelApp.UWP"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
