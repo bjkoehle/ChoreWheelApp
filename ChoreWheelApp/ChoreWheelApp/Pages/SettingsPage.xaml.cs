@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace ChoreWheelApp.Pages
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SettingsPage : ContentPage
     {
-        public MainPage()
+        public SettingsPage()
         {
             InitializeComponent();
-        }
-        async void OnSettingsClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new SettingsPage());
-            
         }
     }
 }

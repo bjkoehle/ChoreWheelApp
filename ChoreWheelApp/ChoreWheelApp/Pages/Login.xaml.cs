@@ -16,7 +16,7 @@ namespace ChoreWheelApp.Pages
         {
             InitializeComponent();
         }
-        public void OnLoginClicked()
+        public void OnLoginClicked(object sender, EventArgs e)
         {
             //check DB for user
             if(true)//When there is a valid user

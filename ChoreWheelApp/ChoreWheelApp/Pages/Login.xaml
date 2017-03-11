@@ -2,15 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChoreWheelApp.Pages.Login"
-             BackgroundColor="#7cdb41"
-             Padding="20">
-    
-    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+             BackgroundImage="Login_bg.png">
+
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Padding="20">
         <Entry Placeholder="Enter email:"
                x:Name="emailEntry"
+               TextColor="Black"
+               BackgroundColor="White"
                HorizontalOptions="Fill"/>
         <Entry IsPassword="True"
                x:Name="passwordEntry"
+               BackgroundColor="White"
+               TextColor="Black"
                Placeholder="Enter Password:"
                HorizontalOptions="Fill"/>
         <Button Text="Login"
