@@ -30,7 +30,8 @@
                 TextColor="White"
                 WidthRequest="150"
                 BorderRadius="35"
-                HorizontalOptions="Center">
+                HorizontalOptions="Center"
+                Clicked="OnSignUpButtonClicked">
         </Button>
     </StackLayout>
 </ContentPage>

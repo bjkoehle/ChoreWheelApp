@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChoreWheelApp.Pages.SignUpPage" 
+             Padding="20"
+             BackgroundImage="General_bg.png"
+             Title="Sign Up">
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Label Text="Username:" VerticalOptions="Center" Margin="0,0,22,0"/>
+            <Entry x:Name="usernameEntry" Placeholder="username" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Label Text="Password:" VerticalOptions="Center" Margin="0,0,22,0"/>
+            <Entry x:Name="passwordEntry" IsPassword="true" Placeholder="password" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Label Text="Email address" VerticalOptions="Center"/>
+            <Entry x:Name="emailEntry" Placeholder="example@example.exm" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <Button Text="Sign Up" Clicked="OnSignUpButtonClicked" HorizontalOptions="Center" />
+        <Label x:Name="messageLabel"  HorizontalOptions="Center"/>
+    </StackLayout>
+</ContentPage>

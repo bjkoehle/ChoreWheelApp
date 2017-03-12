@@ -16,7 +16,10 @@ namespace ChoreWheelApp
             InitializeComponent();
             if (!IsLoggedIn)
             {
-                MainPage = new Pages.Login();
+                var loginPage = new Pages.Login();
+                NavigationPage.SetHasNavigationBar(loginPage, false);
+                MainPage = new NavigationPage(loginPage);
+                
             }
             else{
                 MainPage = new NavigationPage(new ChoreWheelApp.Pages.MainPage());

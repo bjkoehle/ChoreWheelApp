@@ -31,5 +31,9 @@ namespace ChoreWheelApp.Pages
                 passwordEntry.Text = string.Empty;
             }
         }
+        async void OnSignUpButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SignUpPage());
+        }
     }
 }
