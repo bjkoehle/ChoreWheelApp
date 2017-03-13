@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChoreWheelApp.Pages.SettingsPage"
              BackgroundImage="Settings_bg.png"
-             Padding="0,30,0,10">
+             Padding="0,50,0,10">
     <ScrollView>
         <StackLayout Padding="10">
             <Button Text="Profile"
                     BorderRadius="50"
                     BorderColor="Black"
-                    BorderWidth="5"/>
+                    BorderWidth="5"
+                    Clicked="OnProfileClicked"/>
             <Button Text="Color Scheme"
                     BorderRadius="50"
                     BorderColor="Black"

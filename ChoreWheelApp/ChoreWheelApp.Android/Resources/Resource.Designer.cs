@@ -2227,8 +2227,8 @@ namespace ChoreWheelApp.Droid
 			// aapt resource value: 0x7f0200a9
 			public const int MyTasks_bg = 2130837673;
 			
-			// aapt resource value: 0x7f0200ad
-			public const int notification_template_icon_bg = 2130837677;
+			// aapt resource value: 0x7f0200af
+			public const int notification_template_icon_bg = 2130837679;
 			
 			// aapt resource value: 0x7f0200aa
 			public const int Profile_bg = 2130837674;
@@ -2238,6 +2238,12 @@ namespace ChoreWheelApp.Droid
 			
 			// aapt resource value: 0x7f0200ac
 			public const int Settings_bg = 2130837676;
+			
+			// aapt resource value: 0x7f0200ad
+			public const int splash = 2130837677;
+			
+			// aapt resource value: 0x7f0200ae
+			public const int yellowCircle = 2130837678;
 			
 			static Drawable()
 			{

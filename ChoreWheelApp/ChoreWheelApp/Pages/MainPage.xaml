@@ -43,25 +43,25 @@
         
         
         <RelativeLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand">
-            <Button HorizontalOptions="End" BorderRadius="100" WidthRequest="100" HeightRequest="80" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
+            <Button HorizontalOptions="End" BorderRadius="100" WidthRequest="100" HeightRequest="90" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"
                     />
             <Image HorizontalOptions="End" 
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.9,Constant=0}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.8,Constant=0}"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.95,Constant=0}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.9,Constant=0}"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.1,Constant=0}"
                    Source="group.png"/>
         </RelativeLayout>
         <!--<Button Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" BorderRadius="15" Image="group.png" WidthRequest="120" BackgroundColor="White" BorderColor="Black" BorderWidth="3"/>-->
 
         <RelativeLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand">
-            <Button HorizontalOptions="Start" BorderRadius="100" WidthRequest="100" HeightRequest="80" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
+            <Button HorizontalOptions="Start" BorderRadius="100" WidthRequest="100" HeightRequest="90" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"
                     Clicked="OnSettingsClicked"/>
             <Image HorizontalOptions="Start" 
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.9,Constant=0}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.8,Constant=0}"
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.1,Constant=0}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.9,Constant=0}"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.05,Constant=0}"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.1,Constant=0}"
                    Source="settings.png"/>
         </RelativeLayout>
@@ -87,25 +87,25 @@
         
         
         <RelativeLayout Grid.Row="3" Grid.Column="0" HorizontalOptions="CenterAndExpand">
-            <Button HorizontalOptions="End" BorderRadius="100" WidthRequest="100" HeightRequest="80" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
+            <Button HorizontalOptions="End" BorderRadius="100" WidthRequest="100" HeightRequest="90" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"
                     Clicked="OnChoreListClicked"/>
             <Image HorizontalOptions="End" 
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.9,Constant=0}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.8,Constant=0}"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.95,Constant=0}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.9,Constant=0}"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.1,Constant=0}"
                    Source="ChoreList.png"/>
         </RelativeLayout>
         <!--<Button Grid.Row="3" Grid.Column="0" HorizontalOptions="CenterAndExpand" BorderRadius="15" Image="ChoreList.png" WidthRequest="120" BackgroundColor="White" BorderColor="Black" BorderWidth="3" />-->
         
         <RelativeLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="CenterAndExpand">
-            <Button HorizontalOptions="Start" BorderRadius="100" WidthRequest="100" HeightRequest="80" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
+            <Button HorizontalOptions="Start" BorderRadius="100" WidthRequest="100" HeightRequest="90" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"
                     Clicked="OnMyTasksClicked"/>
             <Image HorizontalOptions="Start" 
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.9,Constant=0}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.8,Constant=0}"
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.1,Constant=0}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.9,Constant=0}"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.075,Constant=0}"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.1,Constant=0}"
                    Source="MyTasks.png"/>
         </RelativeLayout>

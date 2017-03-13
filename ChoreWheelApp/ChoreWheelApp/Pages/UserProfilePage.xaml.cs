@@ -10,17 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace ChoreWheelApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class UserProfilePage : ContentPage
     {
-        public SettingsPage()
+        public UserProfilePage()
         {
             InitializeComponent();
-        }
-        async void OnProfileClicked(object sender, EventArgs e)
-        {
-            var a = new UserProfilePage();
-            NavigationPage.SetHasNavigationBar(a, false);
-            await Navigation.PushAsync(a);
         }
     }
 }
