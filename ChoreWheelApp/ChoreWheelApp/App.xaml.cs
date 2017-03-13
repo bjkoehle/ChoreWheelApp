@@ -22,7 +22,9 @@ namespace ChoreWheelApp
                 
             }
             else{
-                MainPage = new NavigationPage(new ChoreWheelApp.Pages.MainPage());
+                var mPage = new ChoreWheelApp.Pages.MainPage();
+                NavigationPage.SetHasNavigationBar(mPage, false);
+                MainPage = new NavigationPage(mPage);
             }
             
         }

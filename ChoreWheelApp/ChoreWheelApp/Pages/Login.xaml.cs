@@ -22,7 +22,9 @@ namespace ChoreWheelApp.Pages
             if(true)//When there is a valid user
             {
                 App.IsLoggedIn = true;
-                App.Current.MainPage = new NavigationPage(new MainPage());
+                var mPage = new MainPage();
+                NavigationPage.SetHasNavigationBar(mPage, false);
+                App.Current.MainPage = new NavigationPage(mPage);
                 //When logout is pressed
             }
             else
@@ -33,7 +35,9 @@ namespace ChoreWheelApp.Pages
         }
         async void OnSignUpButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SignUpPage());
+            var sUpPage = new SignUpPage();
+            NavigationPage.SetHasNavigationBar(sUpPage, false);
+            await Navigation.PushAsync(sUpPage);
         }
     }
 }

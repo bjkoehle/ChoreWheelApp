@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ChoreWheelApp.Pages"
              x:Class="ChoreWheelApp.Pages.MainPage"
-             Title="ChoreWheelApp">
+             Title="ChoreWheelApp"
+             BackgroundImage="Home_bg.png"
+             Padding="0,30,0,10">
 
     <Grid Padding="0,10,0,0">
 
@@ -86,7 +88,8 @@
         
         <RelativeLayout Grid.Row="3" Grid.Column="0" HorizontalOptions="CenterAndExpand">
             <Button HorizontalOptions="End" BorderRadius="100" WidthRequest="100" HeightRequest="80" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"/>
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"
+                    Clicked="OnChoreListClicked"/>
             <Image HorizontalOptions="End" 
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.9,Constant=0}"
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.8,Constant=0}"
@@ -97,7 +100,8 @@
         
         <RelativeLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="CenterAndExpand">
             <Button HorizontalOptions="Start" BorderRadius="100" WidthRequest="100" HeightRequest="80" BackgroundColor="White" BorderColor="Black" BorderWidth="3"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"/>
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1,Constant=0}"
+                    Clicked="OnMyTasksClicked"/>
             <Image HorizontalOptions="Start" 
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.9,Constant=0}"
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.8,Constant=0}"

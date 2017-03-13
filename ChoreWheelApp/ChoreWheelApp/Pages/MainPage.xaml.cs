@@ -15,8 +15,21 @@ namespace ChoreWheelApp.Pages
         }
         async void OnSettingsClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SettingsPage());
-            
+            var sPage = new SettingsPage();
+            NavigationPage.SetHasNavigationBar(sPage, false);
+            await Navigation.PushAsync(sPage);
+        }
+        async void OnChoreListClicked(object sender, EventArgs e)
+        {
+            var clPage = new ChoreListPage();
+            NavigationPage.SetHasNavigationBar(clPage, false);
+            await Navigation.PushAsync(clPage);
+        }
+        async void OnMyTasksClicked(object sender, EventArgs e)
+        {
+            var myTaskPage = new MyTasksPage();
+            NavigationPage.SetHasNavigationBar(myTaskPage, false);
+            await Navigation.PushAsync(myTaskPage);
         }
     }
 }

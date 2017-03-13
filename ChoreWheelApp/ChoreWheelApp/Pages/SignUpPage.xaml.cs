@@ -20,7 +20,9 @@ namespace ChoreWheelApp.Pages
         {
             messageLabel.Text = "Sign Up Succeeded!";
             App.IsLoggedIn = true;
-            App.Current.MainPage = new NavigationPage(new MainPage());
+            var mPage = new MainPage();
+            NavigationPage.SetHasNavigationBar(mPage, false);
+            App.Current.MainPage = new NavigationPage(mPage);
         }
     }
 }
