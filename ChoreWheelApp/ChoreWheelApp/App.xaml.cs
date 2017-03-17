@@ -9,11 +9,24 @@ namespace ChoreWheelApp
 {
     public partial class App : Application
     {
+        public static bool IsLoggedIn { get; set; }
+
         public App()
         {
             InitializeComponent();
-
-            MainPage = new ChoreWheelApp.MainPage();
+            if (!IsLoggedIn)
+            {
+                var loginPage = new Pages.Login();
+                NavigationPage.SetHasNavigationBar(loginPage, false);
+                MainPage = new NavigationPage(loginPage);
+                
+            }
+            else{
+                var mPage = new ChoreWheelApp.Pages.MainPage();
+                NavigationPage.SetHasNavigationBar(mPage, false);
+                MainPage = new NavigationPage(mPage);
+            }
+            
         }
 
         protected override void OnStart()
