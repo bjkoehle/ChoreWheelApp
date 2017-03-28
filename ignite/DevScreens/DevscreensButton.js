@@ -32,6 +32,7 @@ export default class DevscreensButton extends React.Component {
   }
 
   navTestThree = () => {
+    Actions.groupUserView()
   }
 
   navTestFour = () => {

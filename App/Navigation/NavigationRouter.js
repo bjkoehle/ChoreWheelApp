@@ -9,6 +9,7 @@ import LoginScreen from '../Containers/LoginScreen'
 import HomeScreen from '../chorewheel/HomeScreen'
 import ChoreTaskView from '../chorewheel/ChoreTaskView'
 import MyTaskView from '../chorewheel/MyTasksView'
+import GroupUserView from '../chorewheel/GroupUserView'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -24,6 +25,7 @@ class NavigationRouter extends Component {
         <Scene key = 'homeScreen' component={HomeScreen} title = 'Home Screen' hideNavBar />
         <Scene key = 'choreTaskView' component = {ChoreTaskView} title = 'Task List' hideNavBar />
         <Scene key = 'myTaskView' component = {MyTaskView} title = 'My Tasks' hideNavBar />
+        <Scene key = 'groupUserView' component = {GroupUserView} title = 'My Group' hideNavBar />
       </Router>
     )
   }
