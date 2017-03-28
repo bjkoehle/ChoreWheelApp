@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, Modal } from 'react-native'
+import { View, Modal, Text } from 'react-native'
 import DebugConfig from '../../App/Config/DebugConfig'
 import RoundedButton from '../../App/Components/RoundedButton'
 import PresentationScreen from './PresentationScreen'
 
 import { Actions } from 'react-native-router-flux'
+import Styles from './Styles/DevscreensButtonStyles'
 
 export default class DevscreensButton extends React.Component {
   constructor (props) {
@@ -19,11 +20,21 @@ export default class DevscreensButton extends React.Component {
   }
 
   navOurApp = () => {
-    Actions.loginScreen()
+    Actions.homeScreen()
   }
 
   navTestOne = () => {
-    Actions.homeScreen()
+    Actions.choreTaskView()
+  }
+
+  navTestTwo = () => {
+    Actions.myTaskView()
+  }
+
+  navTestThree = () => {
+  }
+
+  navTestFour = () => {
   }
 
   render () {
@@ -39,14 +50,18 @@ export default class DevscreensButton extends React.Component {
           <RoundedButton onPress={this.navOurApp}>
             Start App
           </RoundedButton>
-          <RoundedButton onPress={this.navTestOne}>
-            Example tester 1
+          <Text style = {Styles.text}>Test your pages here:</Text>
+          <RoundedButton onPress = {this.navTestOne}>
+            One
           </RoundedButton>
-          <RoundedButton >
-            2
+          <RoundedButton onPress = {this.navTestTwo}>
+            Two
           </RoundedButton>
-          <RoundedButton >
-            3
+          <RoundedButton onPress = {this.navTestThree} >
+            Three
+          </RoundedButton>
+          <RoundedButton onPress = {this.navTestFour} >
+            Four
           </RoundedButton>
         </View>
       )

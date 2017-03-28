@@ -18,5 +18,9 @@ export default StyleSheet.create({
     ...Fonts.style.h2,
     fontSize: 14,
     color: Colors.text
+  },
+  text: {
+    textAlign: 'center',
+    color: 'white'
   }
 })

@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { Fonts, Colors, Metrics, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   backgroundImage: {
@@ -12,15 +11,9 @@ export default StyleSheet.create({
     width: '100%',
     height:'100%'
   },
-  default: {
-    margin: '5%',
-    alignItems: 'center'
-  },
-  circleImg: {
-    justifyContent: 'space-around',
-    width:'100%',
-    height: '47.5%',
-    margin: '2%'
+  choreList: {
+    marginTop: '15%',
+    marginBottom: '5.5%'
   },
   headerText: {
     fontSize: 34,
