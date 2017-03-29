@@ -25,6 +25,9 @@ export default class DevscreensButton extends React.Component {
   navTestOne = () => {
     Actions.homeScreen()
   }
+  navTestTwo = () => {
+    Actions.registerScreen()
+  }
 
   render () {
     if (DebugConfig.showDevScreens) {
@@ -42,8 +45,8 @@ export default class DevscreensButton extends React.Component {
           <RoundedButton onPress={this.navTestOne}>
             Example tester 1
           </RoundedButton>
-          <RoundedButton >
-            2
+          <RoundedButton onPress={this.navTestTwo} >
+           Register CUCK
           </RoundedButton>
           <RoundedButton >
             3
