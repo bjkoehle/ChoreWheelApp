@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StatusBar } from 'react-native'
+import { View, StatusBar, Image } from 'react-native'
 import NavigationRouter from '../Navigation/NavigationRouter'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
@@ -21,6 +21,7 @@ class RootContainer extends Component {
     return (
       <View style={styles.applicationView}>
         <StatusBar hidden={true} barStyle='light-content' />
+        <View style = {{position: 'absolute', flex: 1,height: '100%',width: '100%', backgroundColor: 'forestgreen'}} />
         <NavigationRouter />
       </View>
     )

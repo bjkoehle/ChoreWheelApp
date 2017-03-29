@@ -68,6 +68,8 @@ Runtime:
 
 [A plugin used thoughout the app?](https://github.com/infinitered/reactotron) *not sure yet*
 
+[Styling Cheatsheet](https://github.com/vhpoet/react-native-styling-cheat-sheet)
+
 ### Redux Plugins:
 
 [Redux home page](http://redux.js.org/)

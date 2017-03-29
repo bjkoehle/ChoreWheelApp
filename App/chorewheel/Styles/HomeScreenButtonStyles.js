@@ -6,9 +6,13 @@ export default StyleSheet.create({
     marginRight: '5%',
     marginLeft: '5%',
     marginBottom: '0%',
-    backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'center',
     flexWrap: 'wrap'
+  },
+  default: {
+    borderBottomWidth: 3,
+    borderColor: 'black',
+    marginTop: '7%'
   }
 })
