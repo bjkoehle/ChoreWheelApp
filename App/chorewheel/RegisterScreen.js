@@ -1,4 +1,3 @@
-
 import React, { PropTypes } from 'react'
 import { Alert, Text, TextInput, Image, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Colors, Metrics } from '../Themes'

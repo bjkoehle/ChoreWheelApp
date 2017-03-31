@@ -7,6 +7,7 @@ import NavigationDrawer from './NavigationDrawer'
 import LaunchScreen from '../Containers/LaunchScreen'
 import LoginScreen from '../chorewheel/LoginScreen'
 import HomeScreen from '../chorewheel/HomeScreen'
+import RegisterScreen from '../chorewheel/RegisterScreen'
 import ChoreTaskView from '../chorewheel/ChoreTaskView'
 import MyTaskView from '../chorewheel/MyTasksView'
 import RegisterScreen from '../chorewheel/RegisterScreen'
@@ -23,6 +24,7 @@ class NavigationRouter extends Component {
         <Scene initial key='launchScreen' component={LaunchScreen} title='LaunchScreen' hideNavBar/>
         <Scene key = 'loginScreen' component={LoginScreen} title = 'Login Screen' hideNavBar />
         <Scene key = 'homeScreen' component={HomeScreen} title = 'Home Screen' hideNavBar />
+        <Scene key = 'registerScreen' component={RegisterScreen} title = 'Register Screen' hideNavBar />
         <Scene key = 'choreTaskView' component = {ChoreTaskView} title = 'Task List' hideNavBar />
         <Scene key = 'myTaskView' component = {MyTaskView} title = 'My Tasks' hideNavBar />
         <Scene key = 'registerScreen' component = {RegisterScreen} title = 'Register Screen' hideNavBar />
