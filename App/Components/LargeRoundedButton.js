@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { TouchableOpacity, Text } from 'react-native'
+import { TouchableOpacity, Text, View } from 'react-native'
 
 import styles from './Styles/LargeRoundedButtonStyles'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -21,10 +21,12 @@ export default class LargeRoundedButton extends React.Component {
 
   render () {
     return (
-      <TouchableOpacity style={styles.button} onPress={this.props.onPress}>
+      <View style={{alignItems: 'center'}}>
         <Text style={styles.buttonText}>{this.getText()}</Text>
-        <Icon name = {this.props.icon} size ={this.props.size} color='black' style = {styles.ico} />
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={this.props.onPress}>
+          <Icon name = {this.props.icon} size ={this.props.size} color='black' style = {styles.ico} />
+        </TouchableOpacity>
+      </View>
     )
   }
 }

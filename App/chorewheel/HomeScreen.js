@@ -13,6 +13,7 @@ export default class HomeSCreen extends React.Component {
         <View style = {{alignItems: 'center'}}><Text style = {styles.headerText}>Welcome!</Text></View>
         <View style = {styles.default}>
           <HomeScreenButton />
+          <Text style = {{fontSize:24}}>Group Name</Text>
           <Image source= {require('./Images/ChoreWheelMock.png')} style = {styles.circleImg} resizeMode='contain' />
         </View>
       </View>
