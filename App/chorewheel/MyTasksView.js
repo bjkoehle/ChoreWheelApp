@@ -1,9 +1,9 @@
 import React from 'react'
-import { ListView, View, Image, Text, TouchableOpacity } from 'react-native'
+import { ListView, View, Image, Text, TouchableOpacity, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions } from 'react-native-router-flux'
 
-import ChoreTask from '../Components/ChoreTask'
+import ChoreTask from '../Components/MyChoreTask'
 import styles from './Styles/ChoreTaskViewStyles'
 
 export default class ChoreTaskView extends React.Component {
@@ -91,8 +91,7 @@ export default class ChoreTaskView extends React.Component {
   //Check if the chore is for thsi user and render accordingly
   createRow(rowData){
     if(rowData.userId == 1){
-      return <ChoreTask data = {rowData}
-      onPress = {() => {console.log('Pressed!')}} />
+      return <ChoreTask data = {rowData} />
     }
     else{
       return null

@@ -19,7 +19,7 @@ export default StyleSheet.create({
   circleImg: {
     justifyContent: 'space-around',
     width:'100%',
-    height: '47.5%',
+    height: '37.5%',
     margin: '2%'
   },
   headerText: {

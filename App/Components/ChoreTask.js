@@ -26,7 +26,6 @@ export default class ChoreTask extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity onPress = {this.props.onPress}>
       <View style = {styles.choreRow}>
         <Icon style = {this.state.iconStyle} name = {this.state.icon} color = {this.state.color} size = {this.state.size} />
         <View style = {styles.choreText}>
@@ -38,7 +37,6 @@ export default class ChoreTask extends React.Component {
           </Text>
         </View>
       </View>
-      </TouchableOpacity>
     )
   }
 }
