@@ -32,9 +32,11 @@ export default class DevscreensButton extends React.Component {
   }
 
   navTestThree = () => {
+    Actions.registerScreen()
   }
 
   navTestFour = () => {
+    Actions.loginScreen()
   }
 
   render () {
@@ -58,10 +60,10 @@ export default class DevscreensButton extends React.Component {
             Two
           </RoundedButton>
           <RoundedButton onPress = {this.navTestThree} >
-            Three
+            Register
           </RoundedButton>
           <RoundedButton onPress = {this.navTestFour} >
-            Four
+            Login
           </RoundedButton>
         </View>
       )
