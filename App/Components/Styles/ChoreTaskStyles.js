@@ -8,7 +8,7 @@ export default StyleSheet.create({
     borderBottomWidth: 2
   },
   timesIcon: {
-    paddingTop: '1%',
+    paddingTop: '2%',
     paddingBottom: '5%',
     paddingLeft: '3%',
     paddingRight: '3%',

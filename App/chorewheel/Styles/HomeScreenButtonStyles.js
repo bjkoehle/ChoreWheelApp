@@ -11,8 +11,8 @@ export default StyleSheet.create({
     flexWrap: 'wrap'
   },
   default: {
-    borderBottomWidth: 3,
+    borderBottomWidth: 1,
     borderColor: 'black',
-    marginTop: '7%'
+    marginTop: '8.5%'
   }
 })

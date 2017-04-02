@@ -6,18 +6,19 @@ export default StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 25,
-    margin: '5%',
+    marginLeft: '5%',
+    marginRight: '5%',
+    marginBottom: '5%',
     backgroundColor: Colors.snow,
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: .5,
     borderColor: 'black'
   },
   buttonText: {
     color: 'black',
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: Fonts.size.medium,
-    marginVertical: Metrics.baseMargin
+    fontSize: Fonts.size.h6,
+    marginVertical: '3%'
   },
   ico: {
     textAlign: 'center'
