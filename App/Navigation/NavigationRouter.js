@@ -7,9 +7,9 @@ import NavigationDrawer from './NavigationDrawer'
 import LaunchScreen from '../Containers/LaunchScreen'
 import LoginScreen from '../chorewheel/LoginScreen'
 import HomeScreen from '../chorewheel/HomeScreen'
-import RegisterScreen from '../chorewheel/RegisterScreen'
 import ChoreTaskView from '../chorewheel/ChoreTaskView'
 import MyTaskView from '../chorewheel/MyTasksView'
+import GroupUserView from '../chorewheel/GroupUserView'
 import RegisterScreen from '../chorewheel/RegisterScreen'
 
 /* **************************
@@ -27,6 +27,7 @@ class NavigationRouter extends Component {
         <Scene key = 'registerScreen' component={RegisterScreen} title = 'Register Screen' hideNavBar />
         <Scene key = 'choreTaskView' component = {ChoreTaskView} title = 'Task List' hideNavBar />
         <Scene key = 'myTaskView' component = {MyTaskView} title = 'My Tasks' hideNavBar />
+        <Scene key = 'groupUserView' component = {GroupUserView} title = 'My Group' hideNavBar />
         <Scene key = 'registerScreen' component = {RegisterScreen} title = 'Register Screen' hideNavBar />
       </Router>
     )
