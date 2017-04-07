@@ -8,6 +8,7 @@ import LoginScreen from '../chorewheel/LoginScreen'
 import HomeScreen from '../chorewheel/HomeScreen'
 import ChoreTaskView from '../chorewheel/ChoreTaskView'
 import MyTaskView from '../chorewheel/MyTasksView'
+import GroupUserView from '../chorewheel/GroupUserView'
 import RegisterScreen from '../chorewheel/RegisterScreen'
 
 /* **************************
