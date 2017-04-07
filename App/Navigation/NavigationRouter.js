@@ -101,6 +101,7 @@ class NavigationRouter extends Component {
           <Scene key = 'homeScreen' component={HomeScreen} title = 'Home Screen' hideNavBar />
           <Scene key ='choreTaskView' component = {ChoreTaskView} title = 'Task List' hideNavBar />
           <Scene key ='myTaskView' component = {MyTaskView} title = 'My Tasks' hideNavBar />
+          <Scene key ='groupScreen' component = {GroupUserView} title = 'Group' hideNavBar />
         </Scene>
       </Router>
     )
