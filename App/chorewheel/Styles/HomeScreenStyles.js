@@ -14,7 +14,7 @@ export default StyleSheet.create({
   },
   default: {
     margin: '5%',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   circleImg: {
     justifyContent: 'space-around',

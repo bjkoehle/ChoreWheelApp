@@ -8,7 +8,7 @@ import styles from './Styles/HomeScreenStyles'
 export default class HomeSCreen extends React.Component {
   render(){
     return(
-      <View style = {{flex: 1}}>
+      <View style = {{flex:1}}>
         <Image source={require('../chorewheel/Images/General_bg.png')} style={styles.backgroundImage} resizeMode='stretch' resizeMethod = 'scale' />
         <View style = {{alignItems: 'center'}}><Text style = {styles.headerText}>Welcome!</Text></View>
         <View style = {styles.default}>
