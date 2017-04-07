@@ -18,9 +18,15 @@ export default class RegisterScreen extends React.Component {
       errors: [],
     }
   }
+
+  //Check to make sure that the info isnt harmful or out of bounds, then pass as a new user
   onRegisterPressed() {
     this.infoVerify(this.state.email,this.state.password, this.state.password_confirmation);
-
+    //TODO: move data into local
+    //Ask the user in an alert if they have a group already
+    //When yes is clicked pull up a model and then get the proper info
+    //Link them to the group locally then push their new user into the group
+    //Pull all new data into the local storage
   }
 
   infoVerify (email,password, password_confirmation){
@@ -68,7 +74,7 @@ export default class RegisterScreen extends React.Component {
           <View style={styles.row}>
             <Text style={styles.rowLabel}>Username</Text>
             <TextInput
-              onChangeText={(val) => this.setState({username: val})}
+              onChangeText={(val) => {this.setState({username: val});console.log(val)}}
               ref='username'
               keyboardType='default'
               returnKeyType='next'

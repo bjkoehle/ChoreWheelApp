@@ -51,7 +51,7 @@ export default class ChoreTask extends React.Component {
       this.props.data.choreName,
       this.state.data.isDone ? 'Would you like to mark this chore INCOMPLETE?':'Would you like to mark this chore COMPLETE?',
       [
-        {text: 'No', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: 'No'},
         {text: 'Yes', onPress: () => {if(this.state.data.isDone === false){this.toggleComplete()}else{this.toggleIncomplete()}}}
       ],
       { cancelable: true }

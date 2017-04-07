@@ -112,6 +112,7 @@ export default class ChoreTaskView extends React.Component {
         }}>
           <Icon name = 'arrow-left' color = 'white' size = {36} />
         </TouchableOpacity>
+        {false ? <Icon name = 'user'color = 'red' size = {80}/> : null}
         <ListView
           style = {styles.choreList}
           dataSource = {this.state.dataSource}
