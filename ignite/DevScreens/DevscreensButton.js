@@ -39,6 +39,10 @@ export default class DevscreensButton extends React.Component {
     Actions.loginScreen()
   }
 
+  navTestFive = () => {
+    Actions.settingScreen()
+  }
+
   render () {
     if (DebugConfig.showDevScreens) {
       return (
@@ -64,6 +68,9 @@ export default class DevscreensButton extends React.Component {
           </RoundedButton>
           <RoundedButton onPress = {this.navTestFour} >
             Login
+          </RoundedButton>
+          <RoundedButton onPress = {this.navTestFive} >
+            Settings
           </RoundedButton>
         </View>
       )

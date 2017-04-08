@@ -11,6 +11,7 @@ import ChoreTaskView from '../chorewheel/ChoreTaskView'
 import MyTaskView from '../chorewheel/MyTasksView'
 import GroupUserView from '../chorewheel/GroupUserView'
 import RegisterScreen from '../chorewheel/RegisterScreen'
+import SettingScreen from '../chorewheel/SettingScreen'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -29,6 +30,7 @@ class NavigationRouter extends Component {
         <Scene key = 'myTaskView' component = {MyTaskView} title = 'My Tasks' hideNavBar />
         <Scene key = 'groupUserView' component = {GroupUserView} title = 'My Group' hideNavBar />
         <Scene key = 'registerScreen' component = {RegisterScreen} title = 'Register Screen' hideNavBar />
+        <Scene key = 'settingScreen' component = {SettingScreen} title = 'Settings' hideNavBar />
       </Router>
     )
   }
