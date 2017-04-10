@@ -28,6 +28,7 @@ export default StyleSheet.create({
     fontSize: 28,
   },
   choreTime: {
+    width: 100,
     fontSize: 16
   }
 })

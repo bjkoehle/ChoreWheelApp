@@ -10,13 +10,13 @@ export default class ChoreTask extends React.Component {
     data: PropTypes.object
   }
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {color: '',size: 0, icon: '',iconStyle: styles.checkIcon};
   }
 
   componentWillMount(){
-    if(this.props.data.isDone == true){
+    if(this.props.data.done == true){
       this.setState({color: 'forestgreen',size: 70, icon: 'check-square-o', iconStyle: styles.checkIcon});
     }
     else{
@@ -32,9 +32,14 @@ export default class ChoreTask extends React.Component {
           <Text style = {styles.choreName}>
             {this.props.data.choreName}
           </Text>
-          <Text style = {styles.choreTime}>
-            {this.props.data.choreTime}
-          </Text>
+          <View style = {{flexDirection: 'row'}}>
+            <Text style = {styles.choreTime}>
+              {this.props.data.choreTime}
+            </Text>
+            <Text style = {styles.choreTime}>
+              {this.props.data.userName}
+            </Text>
+          </View>
         </View>
       </View>
     )

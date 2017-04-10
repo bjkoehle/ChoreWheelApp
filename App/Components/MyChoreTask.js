@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { Text, ListView, View, TouchableOpacity, Alert} from 'react-native'
+import { Text, ListView, View, TouchableOpacity, Alert, AsyncStorage} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -15,7 +15,6 @@ export default class ChoreTask extends React.Component {
     this.state = {color: '',size: 0, icon: '',iconStyle: styles.checkIcon, data: this.props.data};
     this._onPress = this._onPress.bind(this);
     this.toggleComplete = this.toggleComplete.bind(this);
-    this.toggleIncomplete = this.toggleIncomplete.bind(this);
     this.iconRender = this.iconRender.bind(this);
   }
 
@@ -23,22 +22,34 @@ export default class ChoreTask extends React.Component {
     this.iconRender();
   }
 
-  toggleComplete(){
+  toggleComplete(isDone){
     var newData = this.state.data;
-    newData.isDone = true;
+    newData.done = isDone;
     this.setState({data: newData});
     this.iconRender();
+    this.setChoreData(isDone);
   }
 
-  toggleIncomplete(){
-    var newData = this.state.data;
-    newData.isDone = false;
-    this.setState({data: newData});
-    this.iconRender();
+  setChoreData = async (setDone) =>{
+    try{
+      let currentData  = JSON.parse(await AsyncStorage.getItem('CHORE_LIST'));
+      if(currentData !== null){
+        currentData[this.state.data.id -1].done = setDone;
+        // currentData[this.state.data.id -1].choreName = 'CHANGED';
+        // currentData[this.state.data.id -1].choreTime = 'GAY';
+        await AsyncStorage.setItem('CHORE_LIST', JSON.stringify(currentData));
+      }
+      else{
+        console.log('No data');
+      }
+    }
+    catch(err){
+      console.log(err);
+    }
   }
 
   iconRender(){
-    if(this.state.data.isDone === true){
+    if(this.props.data.done === true){
       this.setState({color: 'forestgreen',size: 70, icon: 'check-square-o', iconStyle: styles.checkIcon});
     }
     else{
@@ -49,10 +60,10 @@ export default class ChoreTask extends React.Component {
   _onPress(){
     Alert.alert(
       this.props.data.choreName,
-      this.state.data.isDone ? 'Would you like to mark this chore INCOMPLETE?':'Would you like to mark this chore COMPLETE?',
+      this.state.data.done ? 'Would you like to mark this chore INCOMPLETE?':'Would you like to mark this chore COMPLETE?',
       [
         {text: 'No'},
-        {text: 'Yes', onPress: () => {if(this.state.data.isDone === false){this.toggleComplete()}else{this.toggleIncomplete()}}}
+        {text: 'Yes', onPress: () => {this.toggleComplete(!this.state.data.done)}}
       ],
       { cancelable: true }
     )

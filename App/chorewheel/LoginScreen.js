@@ -1,8 +1,9 @@
 
 import React, { PropTypes } from 'react'
-import { Alert, Text, TextInput, Image, View, StyleSheet, TouchableOpacity } from 'react-native'
-import { Colors, Metrics } from '../Themes'
+import { Alert, Text, TextInput, Image, View, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native'
+import {Actions} from 'react-native-router-flux'
 
+import styles from './Styles/LoginScreenStyles'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
@@ -15,8 +16,14 @@ export default class LoginScreen extends React.Component {
       errors: "",
     }
   }
-  onLoginPressed(){
+
+  onLoginPressed = () => {
     this.emailVerify(this.state.email);
+  }
+
+  onRegisterPressed = () =>{
+    // await AsyncStorage.multiRemove(['UID', 'Group', 'CHORE_LIST']);
+    Actions.registerScreen();
   }
 
   emailVerify(email){
@@ -31,21 +38,26 @@ export default class LoginScreen extends React.Component {
         { cancelable: true }
       )
     }
+    else{
+      //Is true so check database for user
+    }
  }
   render(){
     return(
       <View style = {styles.container}>
-        <View style = {styles.logoContainer}>
-          <Image
-          style = {styles.logo}
-          source = {require('../../App/chorewheel/Images/ChoreWheelMock.png')} // can change image at any point
-          />
-        </View>
-        <View style = {styles.formContainer}>
-
+        <Image source={require('../chorewheel/Images/Login_bg.png')} style={styles.backgroundImage} resizeMode='stretch' resizeMethod = 'scale' />
+        <View style = {{alignItems: 'center'}}><Text style = {styles.headerText}>Login</Text></View>
+        <View style = {styles.content}>
+          <View style = {styles.logoContainer}>
+            <Image
+            style = {styles.logo}
+            source = {require('../../App/chorewheel/Images/ChoreWheelMock.png')} // can change image at any point
+            />
+          </View>
           <View style={styles.row}>
-            <Text style={styles.rowLabel}>Email Address</Text>
+            <Text style={styles.rowLabel}>Email:</Text>
             <TextInput
+              style = {styles.textInput}
               onChangeText = {(text) => this.setState({email: text})}
               ref='email'
               keyboardType='default'
@@ -53,12 +65,12 @@ export default class LoginScreen extends React.Component {
               autoCapitalize='none'
               autoCorrect={false}
               underlineColorAndroid='transparent'
-              placeholder='Email Address' />
+              placeholder='email@example.com' />
           </View>
-
            <View style={styles.row}>
-            <Text style={styles.rowLabel}>Password</Text>
+            <Text style={styles.rowLabel}>Password:</Text>
             <TextInput
+              style = {styles.textInput}
               onChangeText = {(text) => this.setState({password: text})}
               ref='password'
               keyboardType='default'
@@ -67,50 +79,20 @@ export default class LoginScreen extends React.Component {
               autoCorrect={false}
               secureTextEntry //protect password
               underlineColorAndroid='transparent'
-              placeholder='Password' />
+              placeholder='password' />
           </View>
-
-         <TouchableOpacity style ={styles.buttonContainer} onPress={this.onLoginPressed.bind(this)}>
-         <Text style = {styles.buttonText} >LOGIN </Text>
-         </TouchableOpacity>
-
+        <View style = {styles.row}>
+          <TouchableOpacity style ={styles.buttonContainer} onPress={this.onLoginPressed}>
+          <Text style = {styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </View>
+        <View style = {styles.row}>
+          <TouchableOpacity style ={styles.buttonContainer} onPress={this.onLoginPressed}>
+          <Text style = {styles.buttonText}>Register</Text>
+          </TouchableOpacity>
+        </View>
         </View>
       </View>
     )
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex :1,
-    backgroundColor: '#79c605'
-  },
-  logoContainer: {
-    alignSelf: 'center'
-  },
-  logo: {
-    width: 100,
-    height: 100
-  },
-  formContainer: {
-    backgroundColor: Colors.cwalightgreen,
-    margin: Metrics.baseMargin,
-    borderRadius: 4,
-  },
-  row: {
-    paddingVertical: Metrics.doubleBaseMargin,
-    paddingHorizontal: Metrics.doubleBaseMargin
-  },
-  rowLabel: {
-    color: '#000000'
-  },
-  buttonContainer: {
-    backgroundColor: Colors.cwadarkgreen,
-    paddingVertical: 10
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: '#000000'
-  }
-})
