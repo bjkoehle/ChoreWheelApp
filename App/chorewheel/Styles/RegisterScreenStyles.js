@@ -13,16 +13,22 @@ export default StyleSheet.create({
   },
   content: {
     marginTop: '15%',
-    marginBottom: '5.5%',
-    flex: 1
+    marginBottom: '5.5%'
   },
   headerText: {
-    fontSize: 34,
+    fontSize: 30,
     color: 'white',
     position: 'absolute'
   },
   container: {
     flex :1
+  },
+  logoContainer: {
+    alignSelf: 'center'
+  },
+  logo: {
+    width: 90,
+    height: 90
   },
   row: {
     marginTop: '3%',
@@ -35,7 +41,7 @@ export default StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: '#32cd329f',
-    paddingVertical: 10,
+    paddingVertical: 5,
     borderRadius: 25
   },
   buttonText: {
@@ -45,6 +51,8 @@ export default StyleSheet.create({
   },
   textInput:{
     backgroundColor: 'ghostwhite',
+    paddingVertical: 2,
+    paddingLeft: 5,
     borderRadius: 20
   },
   smallDes: {
@@ -57,7 +65,6 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   description: {
-    fontSize: 18,
-    color: 'black'
+    paddingTop: 20
   }
 })
