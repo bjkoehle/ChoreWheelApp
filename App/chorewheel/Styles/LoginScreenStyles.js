@@ -16,7 +16,7 @@ export default StyleSheet.create({
     marginBottom: '5.5%'
   },
   headerText: {
-    fontSize: 34,
+    fontSize: 30,
     color: 'white',
     position: 'absolute'
   },
@@ -41,7 +41,7 @@ export default StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: '#32cd329f',
-    paddingVertical: 10,
+    paddingVertical: 5,
     borderRadius: 25
   },
   buttonText: {
@@ -51,6 +51,8 @@ export default StyleSheet.create({
   },
   textInput:{
     backgroundColor: 'ghostwhite',
+    paddingVertical: 2,
+    paddingLeft: 5,
     borderRadius: 20
   }
 })

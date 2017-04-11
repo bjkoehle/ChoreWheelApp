@@ -18,7 +18,8 @@ export default class LoginScreen extends React.Component {
   }
 
   onLoginPressed = () => {
-    this.emailVerify(this.state.email);
+    
+    // this.emailVerify(this.state.email);
   }
 
   onRegisterPressed = () =>{
