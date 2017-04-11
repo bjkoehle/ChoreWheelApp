@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Alert, Text, TextInput, Image, View, TouchableOpacity, AsyncStorage, Modal, Switch } from 'react-native'
+import { Alert, Text, TextInput, Image, View, KeyboardAvoidingView, ScrollView, TouchableOpacity, AsyncStorage, Modal, Switch } from 'react-native'
 import {Actions, ActionConst} from 'react-native-router-flux'
 
 import styles from './Styles/RegisterScreenStyles'
@@ -19,7 +19,7 @@ export default class RegisterScreen extends React.Component {
       newGroup: false,
       group: '',
       errors: [],
-      modalStatus: {isVisable: false, animationType: 'fade', transparent: true, },
+      modalStatus: {isVisable: false, animationType: 'fade', transparent: true },
       groupDetails:{name: 'Default', Group_ID: 0}
     }
   }
@@ -44,12 +44,8 @@ export default class RegisterScreen extends React.Component {
   onRegisterPressed= () => {
     let verified =  this.infoVerify(this.state.email,this.state.password, this.state.password_confirmation);
     console.log(verified);
-    if(verified === true){
+    if(true === true){
       this.setData();
-      this.toggleModal(true);
-      while(this.state.modalStatus.isVisable === true){
-        //wait
-      }
       if(this.state.groupDetails.name === 'Default' && this.state.group === ''){
         console.log('Left default group')
       }
@@ -114,51 +110,6 @@ export default class RegisterScreen extends React.Component {
     }
   }
 
-  regModal = (<Modal  animationType = {this.state.modalStatus.animationType}
-                transparent = {this.state.modalStatus.transparent}
-                visible = {this.state.modalStatus.isVisable}
-                onRequestClose = {this.toggleModal(false)}
-                >
-          <View>
-            <Text>Enter the group ID from your invite, start your own, or leave blank for the Default group.</Text>
-            <Switch onValueChange = {(Value) => {this.setState({newGroup: value})}} value = {this.state.newGroup} />
-            {this.state.newGroup ?
-              <View>
-                <Text>Group Name:</Text>
-                <Text>Do not leave as Default</Text>
-                <TextInput
-                  style = {styles.textInput}
-                  onChangeText={(val) => {this.setState({groupDetails:{name: val} })}}
-                  ref='new_group_id'
-                  keyboardType='default'
-                  returnKeyType='next'
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  underlineColorAndroid='transparent'
-                  placeholder='Default' />
-              </View>
-              :
-              <TextInput
-                style = {styles.textInput}
-                onChangeText={(val) => {this.setState({group: val})}}
-                ref='group_id'
-                keyboardType='default'
-                returnKeyType='next'
-                autoCapitalize='none'
-                autoCorrect={false}
-                underlineColorAndroid='transparent'
-                placeholder='group ID' />
-            }
-            <TouchableOpacity style ={styles.buttonContainer} onPress = {this.toggleModal(false)}>
-              <Text style = {styles.buttonText}>Done</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>);
-
-  toggleModal = (status)=>{
-    this.setState({modalStatus:{isVisable: status}})
-  }
-
   render(){
     return(
       <View style = {styles.container}>
@@ -172,68 +123,106 @@ export default class RegisterScreen extends React.Component {
         }}>
           <Icon name = 'arrow-left' color = 'white' size = {36} />
         </TouchableOpacity>
-        {this.regModal}
-        <View style = {styles.content}>
-          <View style={styles.row}>
-            <Text style={styles.rowLabel}>Username</Text>
-            <TextInput
-              style = {styles.textInput}
-              onChangeText={(val) => {this.setState({username: val})}}
-              ref='username'
-              keyboardType='default'
-              returnKeyType='next'
-              autoCapitalize='none'
-              autoCorrect={false}
-              underlineColorAndroid='transparent'
-              placeholder='Username' />
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.rowLabel}>Email Address</Text>
-            <TextInput
-              style = {styles.textInput}
-              onChangeText={(val) => this.setState({email: val})}
-              ref='email'
-              keyboardType='default'
-              returnKeyType='next'
-              autoCapitalize='none'
-              autoCorrect={false}
-              underlineColorAndroid='transparent'
-              placeholder='Email Address' />
-          </View>
-           <View style={styles.row}>
-            <Text style={styles.rowLabel}>Password</Text>
-            <TextInput
-              style = {styles.textInput}
-              onChangeText={(val) => this.setState({password: val})}
-              ref='password'
-              keyboardType='default'
-              returnKeyType='go'
-              autoCapitalize='none'
-              autoCorrect={false}
-              secureTextEntry = {true}//protect password
-              underlineColorAndroid='transparent'
-              placeholder='Password' />
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.rowLabel}>Confirm Password</Text>
-            <TextInput
-              style = {styles.textInput}
-              onChangeText={(val) => this.setState({password_confirmation: val})}
-              ref='password_confirmation'
-              keyboardType='default'
-              returnKeyType='go'
-              autoCapitalize='none'
-              autoCorrect={false}
-              secureTextEntry = {true} //protect password
-              underlineColorAndroid='transparent'
-              placeholder='Re-enter password' />
-          </View>
-        <View style = {styles.row}>
-          <TouchableOpacity style ={styles.buttonContainer} onPress={this.onRegisterPressed}>
-            <Text style = {styles.buttonText}>Register</Text>
-          </TouchableOpacity>
-        </View>
-        </View>
+        <KeyboardAvoidingView behavior = 'padding' keyboardVerticalOffset = {15} style = {styles.content}>
+          <ScrollView>
+            <View style={styles.row}>
+              <Text style={styles.rowLabel}>Username:</Text>
+              <TextInput
+                style = {styles.textInput}
+                onChangeText={(val) => {this.setState({username: val})}}
+                ref='username'
+                keyboardType='default'
+                returnKeyType='done'
+                autoCapitalize='none'
+                autoCorrect={false}
+                underlineColorAndroid='transparent'
+                placeholder='Username' />
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.rowLabel}>Email Address:</Text>
+              <TextInput
+                style = {styles.textInput}
+                onChangeText={(val) => this.setState({email: val})}
+                ref='email'
+                keyboardType='email-address'
+                returnKeyType='done'
+                autoCapitalize='none'
+                autoCorrect={false}
+                underlineColorAndroid='transparent'
+                placeholder='Email Address' />
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.rowLabel}>Password:</Text>
+              <TextInput
+                style = {styles.textInput}
+                onChangeText={(val) => this.setState({password: val})}
+                ref='password'
+                keyboardType='default'
+                returnKeyType='done'
+                autoCapitalize='none'
+                autoCorrect={false}
+                secureTextEntry = {true}//protect password
+                underlineColorAndroid='transparent'
+                placeholder='Password' />
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.rowLabel}>Confirm Password:</Text>
+              <TextInput
+                style = {styles.textInput}
+                onChangeText={(val) => this.setState({password_confirmation: val})}
+                ref='password_confirmation'
+                keyboardType='default'
+                returnKeyType='done'
+                autoCapitalize='none'
+                autoCorrect={false}
+                secureTextEntry = {true} //protect password
+                underlineColorAndroid='transparent'
+                placeholder='Re-enter password' />
+            </View>
+            <View style = {styles.row}>
+              <Text style = {styles.description}>Enter the group ID from your invite, start your own, or leave blank for the Default group.</Text>
+              <View style = {styles.switcher}>
+                <Text style = {styles.rowLabel}>New Group?</Text>
+                <Switch onValueChange = {(Value) => {this.setState({newGroup: Value})}} value = {this.state.newGroup} />
+              </View>
+              {this.state.newGroup ?
+                <View>
+                  <Text style = {styles.rowLabel}>Group Name:</Text>
+                  <Text style = {styles.smallDes}>Do not leave as Default</Text>
+                  <TextInput
+                    style = {styles.textInput}
+                    onChangeText={(val) => {this.setState({groupDetails:{name: val} })}}
+                    ref='new_group_id'
+                    keyboardType='default'
+                    returnKeyType='done'
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    underlineColorAndroid='transparent'
+                    placeholder='Default' />
+                </View>
+                :
+                <View>
+                <Text style = {styles.rowLabel}>Group ID:</Text>
+                <TextInput
+                  style = {styles.textInput}
+                  onChangeText={(val) => {this.setState({group: val})}}
+                  ref='group_id'
+                  keyboardType='default'
+                  returnKeyType='done'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  underlineColorAndroid='transparent'
+                  placeholder='group ID' />
+                </View>
+              }
+            </View>
+            <View style = {styles.row}>
+              <TouchableOpacity style ={styles.buttonContainer} onPress={this.onRegisterPressed}>
+                <Text style = {styles.buttonText}>Register</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </View>
     )
   }

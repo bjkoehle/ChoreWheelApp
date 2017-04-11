@@ -34,9 +34,12 @@ export default class ChoreTask extends React.Component {
     try{
       let currentData  = JSON.parse(await AsyncStorage.getItem('CHORE_LIST'));
       if(currentData !== null){
-        currentData[this.state.data.id -1].done = setDone;
-        // currentData[this.state.data.id -1].choreName = 'CHANGED';
-        // currentData[this.state.data.id -1].choreTime = 'GAY';
+        for(let i = 0; i < currentData.length ; i++){
+          if(currentData[i].id === this.state.data.id){
+            currentData[i].done = setDone;
+            break;
+          }
+        }
         await AsyncStorage.setItem('CHORE_LIST', JSON.stringify(currentData));
       }
       else{

@@ -11,8 +11,8 @@ export default class HomeScreenButton extends React.Component {
     super(props);
   }
 
-  navSettings(){
-
+  navSettingsPage(){
+    Actions.settingsScreen();
   }
 
   navGroupPage = ()=>{
@@ -20,11 +20,11 @@ export default class HomeScreenButton extends React.Component {
   }
 
   navChoreList = ()=>{
-    Actions.choreTaskView();
+    Actions.choreListScreen();
   }
 
   navMyTasks = ()=>{
-    Actions.myTaskView();
+    Actions.myTasksScreen();
   }
 
   render(){
@@ -32,7 +32,7 @@ export default class HomeScreenButton extends React.Component {
       <View style={styles.default}>
         <View style={styles.view}>
           <LargeRoundedButton text = 'Group' icon='group' size = {70} onPress = {this.navGroupPage} />
-          <LargeRoundedButton text='Settings' icon='cog' size = {75} />
+          <LargeRoundedButton text='Settings' icon='cog' size = {75} onPress = {this.navSettingsPage} />
         </View>
         <View style={styles.view}>
           <LargeRoundedButton text='Chore List' icon = 'list-alt' size = {80} onPress = {this.navChoreList} />

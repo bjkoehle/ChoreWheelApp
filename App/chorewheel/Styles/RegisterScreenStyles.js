@@ -13,7 +13,8 @@ export default StyleSheet.create({
   },
   content: {
     marginTop: '15%',
-    marginBottom: '5.5%'
+    marginBottom: '5.5%',
+    flex: 1
   },
   headerText: {
     fontSize: 34,
@@ -45,5 +46,18 @@ export default StyleSheet.create({
   textInput:{
     backgroundColor: 'ghostwhite',
     borderRadius: 20
+  },
+  smallDes: {
+    fontSize: 12,
+    fontStyle: 'italic'
+  },
+  switcher: {
+    paddingTop: '4%',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  description: {
+    fontSize: 18,
+    color: 'black'
   }
 })

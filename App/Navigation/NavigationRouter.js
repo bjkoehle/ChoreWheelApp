@@ -10,6 +10,7 @@ import ChoreTaskView from '../chorewheel/ChoreTaskView'
 import MyTaskView from '../chorewheel/MyTasksView'
 import GroupUserView from '../chorewheel/GroupUserView'
 import RegisterScreen from '../chorewheel/RegisterScreen'
+import SettingScreen from '../chorewheel/SettingScreen'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -26,7 +27,6 @@ class NavigationRouter extends Component {
   async checkLogin(){
     //await AsyncStorage.multiRemove(['UID', 'Group', 'CHORE_LIST']); //This is for reseting hard coded data
     let data = JSON.parse(await AsyncStorage.getItem('Group'));
-    console.log(data)
     if(data === null){
       console.log('1')
       Actions.loginScreen({type: ActionConst.REPLACE});
@@ -54,9 +54,10 @@ class NavigationRouter extends Component {
           <Scene key = 'loginScreen' component={LoginScreen} title = 'Login Screen' hideNavBar />
           <Scene key = 'registerScreen' component = {RegisterScreen} title = 'Register Screen' hideNavBar />
           <Scene key = 'homeScreen' component={HomeScreen} title = 'Home Screen' hideNavBar initial/>
-          <Scene key = 'choreTaskView' component = {ChoreTaskView} title = 'Task List' hideNavBar />
-          <Scene key = 'myTaskView' component = {MyTaskView} title = 'My Tasks' hideNavBar />
+          <Scene key = 'choreListScreen' component = {ChoreTaskView} title = 'Task List' hideNavBar />
+          <Scene key = 'myTasksScreen' component = {MyTaskView} title = 'My Tasks' hideNavBar />
           <Scene key = 'groupScreen' component = {GroupUserView} title = 'Group' hideNavBar />
+          <Scene key = 'settingsScreen' component = {SettingScreen} title = 'Settings' hideNavBar />
         </Scene>
       </Router>
     )

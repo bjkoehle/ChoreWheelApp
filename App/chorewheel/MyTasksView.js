@@ -30,6 +30,9 @@ export default class ChoreTaskView extends React.Component {
 
   //Check if the chore is for thsi user and render accordingly
   createRow(rowData){
+    //
+    // Get user id from storage
+    //
     if(rowData.userId == 1){
       return <ChoreTask data = {rowData} />
     }
