@@ -11,8 +11,15 @@ export default class ChoreTaskView extends React.Component {
   getData = async ()=>{
     //call to database here for chores
     var result  = await AsyncStorage.getItem('CHORE_LIST');
+    var userOBJ = await AsyncStorage.getItem('UID');
     if(result !== null){
       this.setState({dataSource: this.ds.cloneWithRows(JSON.parse(result))});
+      this.render();
+    }
+    else{console.log('err')}
+
+    if(userOBJ !== null){
+      this.setState({user: JSON.parse(userOBJ)});
       this.render();
     }
     else{console.log('err')}
@@ -26,7 +33,7 @@ export default class ChoreTaskView extends React.Component {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.getData = this.getData.bind(this);
-    this.state = {dataSource: null};
+    this.state = {dataSource: null, user: null};
   }
 
   render() {
