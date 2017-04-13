@@ -25,8 +25,11 @@ export default class RegisterScreen extends React.Component {
   }
 
   setData = async () =>{
-    let UID_obj = {User: 1};
-    let GROUP_obj = {Group_ID: 1, Group_Name: 'Cucks'};
+    let UID_obj = {User_id: 1, admin: true, group_id: 1, email: 'cuck@cuk.com', username: 'bcuk'};
+    let GROUP_obj = {Group_ID: 1, Group_Name: 'Cucks', user_list: [{User_id: 1, admin: true, group_id: 1, email: 'cuck@cuk.com', username: 'bcuk'},
+                                                                  {User_id: 1, admin: true, group_id: 1, email: 'cuck@cuk.com', username: 'bcuk'},
+                                                                  {User_id: 1, admin: true, group_id: 1, email: 'cuck@cuk.com', username: 'bcuk'}]
+                                                                };
     let CHORE_LIST_obj = [{id: 1, choreName: 'Do the Dishes', choreTime: 'Daily', done: true, userName: 'Brendan', userId: 1, groupId: 1},
                           {id: 2, choreName: 'Change the filter', choreTime: 'Daily', done: false, userName: 'Brendan', userId: 1, groupId: 1},
                           {id: 3, choreName: 'Sweep the patio', choreTime: 'Weekly', done: true, userName: 'Jaime', userId: 2, groupId: 1},
@@ -44,14 +47,14 @@ export default class RegisterScreen extends React.Component {
   onRegisterPressed= () => {
     let verified =  this.infoVerify(this.state.email,this.state.password, this.state.password_confirmation);
     console.log(verified);
-    if(true === true){
-      this.setData();
+    if(verified === true){
+      // this.setData();
       if(this.state.groupDetails.name === 'Default' && this.state.group === ''){
         console.log('Left default group')
       }
-      else if(this.state.newGroup === true && this.state.groupDetails.Group_ID !== 0){
+      else if(this.state.newGroup === true && this.state.groupDetails.Group_ID === 0){
         //Register a new group here
-
+        fetch
       }
       else{
         //Assume that they entered something for group id
