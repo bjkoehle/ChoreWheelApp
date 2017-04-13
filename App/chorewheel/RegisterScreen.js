@@ -201,7 +201,7 @@ export default class RegisterScreen extends React.Component {
                   <Text style = {styles.rowLabel}>Group ID:</Text>
                   <Text style = {styles.smallDes}>Not available with new group.</Text>
                   <TextInput
-                    style = {styles.textInput}
+                    style = {[styles.textInput, {backgroundColor: 'lightgrey'}]}
                     onChangeText={(val) => {this.setState({group: val})}}
                     ref='group_id'
                     keyboardType='default'
@@ -209,7 +209,6 @@ export default class RegisterScreen extends React.Component {
                     autoCapitalize='none'
                     autoCorrect={false}
                     underlineColorAndroid='transparent'
-                    placeholder='-------------------------------'
                     editable = {false}/>
                 </View>
                 <View style = {{marginTop: '3%'}}>

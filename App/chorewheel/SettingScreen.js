@@ -73,8 +73,7 @@ export default class SettingScreen extends React.Component {
           } style={{
           position: 'absolute',
           paddingTop: '4%',
-          paddingHorizontal: '10%',
-          zIndex: 1
+          paddingHorizontal: '10%'
           }}>
           <Icon name = 'arrow-left' color = 'white' size = {36} />
         </TouchableOpacity>
@@ -103,6 +102,7 @@ export default class SettingScreen extends React.Component {
           </RoundedButton>
           </View>
           <Modal
+            animationDuration = {400}
             backButtonClose = {true}
             backdrop = {true}
             backdropOpacity = {.5}
@@ -111,7 +111,7 @@ export default class SettingScreen extends React.Component {
           >
             <View>
             <View style = {styles.groupModal}>
-              <Text style = {styles.description}>Enter the group ID from your invite, start your own, or leave blank for the Default group.</Text>
+              <Text style = {styles.description}>Enter the group ID from your invite, or start your own.</Text>
               <View style = {styles.switcher}>
                 <Text style = {styles.rowLabel}>New Group?</Text>
                 <Switcher onChange = {(Value) => {this.setState({newGroup: Value})}} value = {this.state.newGroup} defaultSelected = {this.state.newGroup}>
@@ -125,7 +125,7 @@ export default class SettingScreen extends React.Component {
                   <Text style = {styles.rowLabel}>Group ID:</Text>
                   <Text style = {styles.smallDes}>Not available with new group.</Text>
                   <TextInput
-                    style = {styles.textInput}
+                    style = {[styles.textInput, {backgroundColor: 'lightgrey'}]}
                     onChangeText={(val) => {this.setState({group: val})}}
                     ref='group_id'
                     keyboardType='default'
@@ -133,7 +133,6 @@ export default class SettingScreen extends React.Component {
                     autoCapitalize='none'
                     autoCorrect={false}
                     underlineColorAndroid='transparent'
-                    placeholder='-------------------------------'
                     editable = {false}/>
                 </View>
                 <View style = {{marginTop: '3%'}}>
@@ -183,6 +182,14 @@ export default class SettingScreen extends React.Component {
                 </View>
               </View>
               }
+            </View>
+            <View style = {styles.buttonsView}>
+              <TouchableOpacity style = {styles.cancelButton} onPress = {()=>{this.toggleModal(false)}}>
+                <Text style  = {{fontSize: 24, alignSelf: 'center'}}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.doneButton}>
+                <Text style  = {{fontSize: 24, alignSelf: 'center'}}>{this.state.newGroup === 'yes'?'Create':'Join'}</Text>
+              </TouchableOpacity>
             </View>
             </View>
           </Modal>

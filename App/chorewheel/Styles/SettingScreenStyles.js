@@ -61,5 +61,23 @@ export default StyleSheet.create({
   },
   description: {
     paddingTop: 20
+  },
+  buttonsView:{
+    marginHorizontal: '10%',
+    alignItems: 'stretch',
+    flexDirection: 'row',
+  },
+  cancelButton:{
+    borderRadius:15,
+    backgroundColor: '#ff1c1cf0',
+    paddingVertical: 10,
+    marginRight:'10%',
+    flex: 1
+  },
+  doneButton:{
+    borderRadius: 15,
+    backgroundColor: '#32cd329f',
+    paddingVertical: 10,
+    flex: 1
   }
 })
