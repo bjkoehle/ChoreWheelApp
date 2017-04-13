@@ -21,6 +21,7 @@ export default class ChoreTaskView extends React.Component {
     if(userOBJ !== null){
       this.setState({user: JSON.parse(userOBJ)});
       this.render();
+      console.log(this.state.user)
     }
     else{console.log('err')}
   }
@@ -49,12 +50,26 @@ export default class ChoreTaskView extends React.Component {
         }}>
           <Icon name = 'arrow-left' color = 'white' size = {36} />
         </TouchableOpacity>
-        {this.state.dataSource === null ? null : <ListView
-          style = {styles.choreList}
-          dataSource = {this.state.dataSource}
-          renderRow = { (rowData) =>
-            <ChoreTask data = {rowData} />}
-        />}
+        {(this.state.user !== null && this.state.user.admin === true) ?
+          <TouchableOpacity style={{
+            position: 'absolute',
+            paddingTop: '2%',
+            paddingLeft: '90%',
+            zIndex: 10
+          }}>
+            <Icon name = 'plus' color = 'white' size = {36} />
+          </TouchableOpacity>
+          : null
+        }
+        {this.state.dataSource === null ? null :
+          <ListView
+            style = {styles.choreList}
+            dataSource = {this.state.dataSource}
+            renderRow = { (rowData) => <ChoreTask data = {rowData}
+                                                  user = {(this.state.user !== null && this.state.user.admin === true)
+                                                          ? this.state.user : null} />}
+          />
+        }
       </View>
     )
   }
