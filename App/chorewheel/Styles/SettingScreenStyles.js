@@ -33,9 +33,9 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   groupModal: {
-    marginTop: '20%',
-    marginLeft: '10%',
-    marginRight: '10%',
+    marginTop: '5%',
+    marginLeft: '5%',
+    marginRight: '5%',
     paddingLeft: '5%',
     paddingRight: '5%',
     paddingBottom: '5%',
