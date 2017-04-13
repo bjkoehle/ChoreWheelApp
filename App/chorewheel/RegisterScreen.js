@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Alert, Text, TextInput, Image, View, KeyboardAvoidingView, ScrollView, TouchableOpacity, AsyncStorage, Modal, Switch } from 'react-native'
+import { Alert, Text, TextInput, Image, View, KeyboardAvoidingView, ScrollView, TouchableOpacity, AsyncStorage, Switch } from 'react-native'
 import {Actions, ActionConst} from 'react-native-router-flux'
+import { SegmentedControlButton, Switcher } from 'nachos-ui'
 
 import styles from './Styles/RegisterScreenStyles'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -16,14 +17,14 @@ export default class RegisterScreen extends React.Component {
       email: '',
       password: '',
       password_confirmation: '',
-      newGroup: false,
+      newGroup: 'no',
       group: '',
       errors: [],
-      modalStatus: {isVisable: false, animationType: 'fade', transparent: true },
       groupDetails:{name: 'Default', Group_ID: 0}
     }
   }
 
+  //Data hard coded for dev testing
   setData = async () =>{
     let UID_obj = {User_id: 1, admin: true, group_id: 1, email: 'cuck@cuk.com', username: 'bcuk'};
     let GROUP_obj = {Group_ID: 1, Group_Name: 'Cucks', user_list: [{User_id: 1, admin: true, group_id: 1, email: 'cuck@cuk.com', username: 'bcuk'},
@@ -47,14 +48,15 @@ export default class RegisterScreen extends React.Component {
   onRegisterPressed= () => {
     let verified =  this.infoVerify(this.state.email,this.state.password, this.state.password_confirmation);
     console.log(verified);
+    this.setData();
+    Actions.homeScreen({type: ActionConst.RESET});
     if(verified === true){
       // this.setData();
       if(this.state.groupDetails.name === 'Default' && this.state.group === ''){
         console.log('Left default group')
       }
-      else if(this.state.newGroup === true && this.state.groupDetails.Group_ID === 0){
+      else if(this.state.newGroup === 'no' && this.state.groupDetails.Group_ID === 0){
         //Register a new group here
-        fetch
       }
       else{
         //Assume that they entered something for group id
@@ -95,6 +97,7 @@ export default class RegisterScreen extends React.Component {
         ],
         { cancelable: true }
       )
+      this.setState({password: '', password_confirmation: ''})
       return false
     }
     if (password == password_confirmation) {
@@ -109,6 +112,7 @@ export default class RegisterScreen extends React.Component {
         ],
         { cancelable: true }
       )
+      this.setState({password: '', password_confirmation: ''})
       return false
     }
   }
@@ -152,7 +156,7 @@ export default class RegisterScreen extends React.Component {
                 autoCapitalize='none'
                 autoCorrect={false}
                 underlineColorAndroid='transparent'
-                placeholder='Email Address' />
+                placeholder='example@example.com' />
             </View>
             <View style={styles.row}>
               <Text style={styles.rowLabel}>Password:</Text>
@@ -180,18 +184,36 @@ export default class RegisterScreen extends React.Component {
                 autoCorrect={false}
                 secureTextEntry = {true} //protect password
                 underlineColorAndroid='transparent'
-                placeholder='Re-enter password' />
+                placeholder='Password' />
             </View>
             <View style = {styles.row}>
               <Text style = {styles.description}>Enter the group ID from your invite, start your own, or leave blank for the Default group.</Text>
               <View style = {styles.switcher}>
                 <Text style = {styles.rowLabel}>New Group?</Text>
-                <Switch onValueChange = {(Value) => {this.setState({newGroup: Value})}} value = {this.state.newGroup} />
+                <Switcher onChange = {(Value) => {this.setState({newGroup: Value})}} value = {this.state.newGroup} defaultSelected = {this.state.newGroup}>
+                  <SegmentedControlButton value = 'no' text = 'No' />
+                  <SegmentedControlButton value = 'yes' text = 'Yes' />
+                </Switcher>
               </View>
-              {this.state.newGroup ?
-                <View>
+              {this.state.newGroup === 'yes' ?
+              <View>
+                <View style = {{marginTop: '3%'}}>
+                  <Text style = {styles.rowLabel}>Group ID:</Text>
+                  <Text style = {styles.smallDes}>Not available with new group.</Text>
+                  <TextInput
+                    style = {[styles.textInput, {backgroundColor: 'lightgrey'}]}
+                    onChangeText={(val) => {this.setState({group: val})}}
+                    ref='group_id'
+                    keyboardType='default'
+                    returnKeyType='done'
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    underlineColorAndroid='transparent'
+                    editable = {false}/>
+                </View>
+                <View style = {{marginTop: '3%'}}>
                   <Text style = {styles.rowLabel}>Group Name:</Text>
-                  <Text style = {styles.smallDes}>Do not leave as Default</Text>
+                  <Text style = {styles.smallDes}>New group name, do not leave as Default:</Text>
                   <TextInput
                     style = {styles.textInput}
                     onChangeText={(val) => {this.setState({groupDetails:{name: val} })}}
@@ -203,20 +225,38 @@ export default class RegisterScreen extends React.Component {
                     underlineColorAndroid='transparent'
                     placeholder='Default' />
                 </View>
-                :
-                <View>
-                <Text style = {styles.rowLabel}>Group ID:</Text>
-                <TextInput
-                  style = {styles.textInput}
-                  onChangeText={(val) => {this.setState({group: val})}}
-                  ref='group_id'
-                  keyboardType='default'
-                  returnKeyType='done'
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  underlineColorAndroid='transparent'
-                  placeholder='group ID' />
+              </View>
+              :
+              <View>
+                <View style = {{marginTop: '3%'}}>
+                  <Text style = {styles.rowLabel}>Group ID:</Text>
+                  <Text style = {styles.smallDes}>Set group id from invite email here:</Text>
+                  <TextInput
+                    style = {styles.textInput}
+                    onChangeText={(val) => {this.setState({group: val})}}
+                    ref='group_id'
+                    keyboardType='default'
+                    returnKeyType='done'
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    underlineColorAndroid='transparent'
+                    placeholder='#######' />
                 </View>
+                <View style = {{marginTop: '3%'}}>
+                  <Text style = {styles.rowLabel}>Group Name:</Text>
+                  <Text style = {styles.smallDes}>Enter name from invite email here:</Text>
+                  <TextInput
+                    style = {styles.textInput}
+                    onChangeText={(val) => {this.setState({groupDetails:{name: val} })}}
+                    ref='new_group_id'
+                    keyboardType='default'
+                    returnKeyType='done'
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    underlineColorAndroid='transparent'
+                    placeholder='Default' />
+                </View>
+              </View>
               }
             </View>
             <View style = {styles.row}>
