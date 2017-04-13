@@ -2,8 +2,9 @@
 import React, { PropTypes } from 'react'
 import { Alert, Text, TextInput, Image, View, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native'
 import {Actions} from 'react-native-router-flux'
+import base64 from 'base-64'
 
-import styles from './Styles/LoginScreenStyles'
+import styles from './Styles/RegisterScreenStyles'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
@@ -18,12 +19,17 @@ export default class LoginScreen extends React.Component {
   }
 
   onLoginPressed = () => {
-    
-    // this.emailVerify(this.state.email);
+    let verify = this.emailVerify(this.state.email);
+    if(verify === true){
+      let login = {email: this.state.email, password: this.state.password};
+      // Call login here
+    }
+    else{
+      // reset password
+    }
   }
 
   onRegisterPressed = () =>{
-    // await AsyncStorage.multiRemove(['UID', 'Group', 'CHORE_LIST']);
     Actions.registerScreen();
   }
 
@@ -37,10 +43,12 @@ export default class LoginScreen extends React.Component {
           {text: 'OK', onPress: () => console.log('OK Pressed')},
         ],
         { cancelable: true }
-      )
+      );
+      return false;
     }
     else{
       //Is true so check database for user
+      return true;
     }
  }
   render(){

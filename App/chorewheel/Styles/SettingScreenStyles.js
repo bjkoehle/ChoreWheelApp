@@ -31,5 +31,35 @@ export default StyleSheet.create({
   default: {
     margin: '5%',
     alignItems: 'center'
+  },
+  groupModal: {
+    marginTop: '20%',
+    marginLeft: '10%',
+    marginRight: '10%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    paddingBottom: '5%',
+    backgroundColor: 'white',
+    borderRadius: 15
+  },
+  rowLabel: {
+    color: '#000000',
+    fontSize: 24
+  },
+  textInput:{
+    paddingLeft: 10,
+    borderWidth: 1,
+    borderColor: 'black'
+  },
+  smallDes: {
+    fontSize: 12,
+    fontStyle: 'italic'
+  },
+  switcher: {
+    paddingTop: '4%',
+    alignItems: 'center'
+  },
+  description: {
+    paddingTop: 20
   }
 })
