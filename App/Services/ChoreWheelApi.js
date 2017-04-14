@@ -1,16 +1,14 @@
-export function login(email, password, auth) {
-  fetch('https://chorewheelandroid.herokuapp.com/api/user/login', {
+export async function login(credentials, user) {
+  var value = await fetch('https://chorewheelandroid.herokuapp.com/api/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
+      body: JSON.stringify(credentials)
     })
-    .then(response => {console.log(JSON.parse(response._bodyInit))})
-    .catch(error => {console.log(error)})
+    .catch(error => {console.log(error)});
+    user = value;
+    return user
 }
 
 export function register(user) {
