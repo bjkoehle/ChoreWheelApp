@@ -17,7 +17,6 @@ export default class LoginScreen extends React.Component {
       email: "",
       password: "",
       errors: "",
-      user: null
     }
   }
 
@@ -26,9 +25,10 @@ export default class LoginScreen extends React.Component {
     if(true === true){
       let credentials = {email: this.state.email, password: this.state.password};
       // Call login here
-      this.setState({user: login(credentials, this.state.user)});
-      console.log(this.state.user)
-      
+      login(credentials)
+      .then((res)=>{
+        console.log(res)
+      });
     }
     else{
       // reset password
@@ -36,7 +36,7 @@ export default class LoginScreen extends React.Component {
   }
 
   onRegisterPressed = () =>{
-    console.log(this.state.user)
+    console.log(this.success)
     // Actions.registerScreen();
   }
 
