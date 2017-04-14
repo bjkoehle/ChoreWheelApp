@@ -41,8 +41,9 @@ export default StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: '#32cd329f',
-    paddingVertical: 5,
-    borderRadius: 25
+    paddingVertical: 10,
+    borderRadius: 25,
+    marginHorizontal: '15%'
   },
   buttonText: {
     textAlign: 'center',
@@ -50,10 +51,9 @@ export default StyleSheet.create({
     fontSize: 24
   },
   textInput:{
-    backgroundColor: 'ghostwhite',
-    paddingVertical: 2,
-    paddingLeft: 5,
-    borderRadius: 20
+    paddingLeft: 10,
+    borderWidth: 1,
+    borderColor: 'black'
   },
   smallDes: {
     fontSize: 12,
@@ -61,7 +61,6 @@ export default StyleSheet.create({
   },
   switcher: {
     paddingTop: '4%',
-    flexDirection: 'row',
     alignItems: 'center'
   },
   description: {

@@ -12,16 +12,17 @@ export default class GroupUser extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity onPress = {this.props.onPress}>
       <View style = {styles.userRow}>
         <Icon style = {styles.userIcon} name = 'user-circle-o' size = {60} />
         <View style = {styles.userText}>
           <Text style = {styles.userName}>
-            {this.props.data.firstName} {this.props.data.lastName}
+            {this.props.data.username}
+          </Text>
+          <Text style = {styles.email}>
+            {this.props.data.email}
           </Text>
         </View>
       </View>
-      </TouchableOpacity>
     )
   }
 }

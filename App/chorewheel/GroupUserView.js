@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListView, View, Image, Text, TouchableOpacity } from 'react-native'
+import { ListView, View, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions } from 'react-native-router-flux'
 
@@ -8,49 +8,25 @@ import styles from './Styles/GroupUserViewStyles'
 
 export default class GroupUserView extends React.Component {
 
-  getData(){
+  getData = async ()=>{
     //call to database here for chores
+    var result  = await AsyncStorage.getItem('Group');
+    if(result !== null){
+      this.setState({dataSource: this.ds.cloneWithRows(JSON.parse(result).user_list)});
+      this.render();
+    }
+    else{console.log('err')}
+  }
+
+  componentWillMount(){
+    this.getData().done();
   }
 
   constructor(props){//to remove later when data is implemented
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    var userSample = [
-      {
-        firstName: 'Jaime',
-        lastName: 'Romero',
-        userId: 0
-      },
-      {
-        firstName: 'Tik',
-        lastName: 'Aw',
-        userId: 1
-      },
-      {
-        firstName: 'Brendan',
-        lastName: 'Koehler',
-        userId: 2
-      },
-      {
-        firstName: 'Mik',
-        lastName: 'Odom',
-        userId: 3
-      },
-      {
-        firstName: 'Ab',
-        lastName: 'Dullah',
-        userId: 4
-      },
-      {
-        firstName: 'Cuk',
-        lastName: 'Boi',
-        userId: 5
-      }
-    ];
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(
-         userSample
-        )
+      dataSource: null
     };
   }
 
@@ -68,12 +44,12 @@ export default class GroupUserView extends React.Component {
         }}>
           <Icon name = 'arrow-left' color = 'white' size = {36} />
         </TouchableOpacity>
-        <ListView
+        {this.state.dataSource === null ? null :<ListView
           style = {styles.userList}
           dataSource = {this.state.dataSource}
           renderRow = { (rowData) =>
             <GroupUser data = {rowData} />}
-        />
+        />}
       </View>
     )
   }

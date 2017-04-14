@@ -16,9 +16,13 @@ export default StyleSheet.create({
     color: 'black'
   },
   userName: {
-    fontSize: 28
+    fontSize: 28,
+    color: 'black'
   },
   userText: {
     justifyContent: 'center'
+  },
+  email: {
+    fontSize: 14
   }
 })
