@@ -22,12 +22,16 @@ export default class LoginScreen extends React.Component {
 
   onLoginPressed = () => {
     let verify = this.emailVerify(this.state.email);
-    if(true === true){
+    if(verify === true){
       let credentials = {email: this.state.email, password: this.state.password};
       // Call login here
       login(credentials)
       .then((res)=>{
-        console.log(res)
+        if(res.ok === true) {
+          
+        } else {
+
+        }
       });
     }
     else{
@@ -36,8 +40,7 @@ export default class LoginScreen extends React.Component {
   }
 
   onRegisterPressed = () =>{
-    console.log(this.success)
-    // Actions.registerScreen();
+    Actions.registerScreen();
   }
 
   emailVerify(email){

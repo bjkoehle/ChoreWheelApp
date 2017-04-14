@@ -1,4 +1,4 @@
-export function login(credentials, user) {
+export function login(credentials) {
   return fetch('https://chorewheelandroid.herokuapp.com/api/user/login', {
       method: 'POST',
       headers: {
