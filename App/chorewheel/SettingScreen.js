@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput, Image, Button, TouchableOpacity, AsyncStorage } from 'react-native'
+import { View, Text, TextInput, Image, Button, TouchableOpacity, AsyncStorage, Alert } from 'react-native'
 import RoundedButton from '../../App/Components/myRoundedButton'
 import { SegmentedControlButton, Switcher } from 'nachos-ui'
 import Modal from 'react-native-modalbox'
@@ -17,13 +17,12 @@ export default class SettingScreen extends React.Component {
       group: '',
       errors: [],
       groupDetails:{name: 'Default', Group_ID: 0},
-      modalProperties: {isVisible: false}
+      modalProperties: {isVisibleJoin: false,isVisibleUser: false, isVisibleGroup: false, isVisibleList: false}
     };
   }
 
   getUser = async () => {
     let user = JSON.parse(await AsyncStorage.getItem('UID'));
-    console.log(user);
     this.setState({user: user});
   }
 
@@ -32,7 +31,7 @@ export default class SettingScreen extends React.Component {
   }
 
   toggleModal = (request) => {
-    this.setState({modalProperties:{isVisible: request}});
+    this.setState({modalProperties: request});
   }
 
   onLogoutPress = async () => {
@@ -41,14 +40,15 @@ export default class SettingScreen extends React.Component {
   }
 
   onJoinGroupPress = () => {
-    this.toggleModal(true);
+    this.setState({modalProperties:{isVisibleJoin: true}});
   }
 
   onLeaveGroupPress = ()=>{
     this.state.user.group_id = 0;
-    this.setState({user: {group_id: 0}});
+    console.log('reached');
+    console.log(this.state.user.group_id)
+    this.setState({user: {...this.state.user, group_id: 0, admin:true}});
     this.revertDefault();
-
   }
 
   revertDefault = async () => {
@@ -61,56 +61,19 @@ export default class SettingScreen extends React.Component {
     await AsyncStorage.setItem('CHORE_LIST', JSON.stringify(default_list));
   }
 
-  render () {
-      return (
-        <View style={{height: '100%'}}>
-          <Image source={require('../chorewheel/Images/General_bg.png')} style={styles.backgroundImage} resizeMode='stretch' resizeMethod = 'scale' />
-          <View style = {{alignItems: 'center'}}><Text style = {styles.headerText}>Settings</Text></View>
-          <TouchableOpacity onPress = {()=>{
-              if(!this.state.modalProperties.isVisible){Actions.pop()}
-              else{this.toggleModal(false)}
-            }
-          } style={{
-          position: 'absolute',
-          paddingTop: '4%',
-          paddingHorizontal: '10%'
-          }}>
-          <Icon name = 'arrow-left' color = 'white' size = {36} />
-        </TouchableOpacity>
-        <View style={styles.settingList}>
-          <RoundedButton onPress={this.onLogoutPress}>
-            Logout
-          </RoundedButton>
-          <RoundedButton onPress={this._onPress}>
-            Group Settings
-          </RoundedButton>
-          <RoundedButton onPress={this._onPress}>
-            Chore List Settings
-          </RoundedButton>
-          <RoundedButton>
-            Invite Group Memebers
-          </RoundedButton>
-          {this.state.user !== null && this.state.user.group_id === 0 ? <RoundedButton onPress = {this.onJoinGroupPress}>
-            Join Group
-          </RoundedButton>
-          :
-          <RoundedButton onPress = {this.onLeaveGroupPress}>
-            Leave Group
-          </RoundedButton>}
-          <RoundedButton>
-            Edit User Settings
-          </RoundedButton>
-          </View>
-          <Modal
+  joinModal = () =>{
+    return(
+      <Modal
             animationDuration = {400}
             backButtonClose = {true}
             backdrop = {true}
             backdropOpacity = {.5}
-            style = {{height: '75%',width: '90%',borderRadius:15}}
-            isOpen = {this.state.modalProperties.isVisible}
+            position = 'top'
+            style = {{height:'80%',width: '90%',borderRadius:15}}
+            isOpen = {this.state.modalProperties.isVisibleJoin}
           >
             <View>
-            <View style = {styles.groupModal}>
+            <View style = {[styles.groupModal]}>
               <Text style = {styles.description}>Enter the group ID from your invite, or start your own.</Text>
               <View style = {styles.switcher}>
                 <Text style = {styles.rowLabel}>New Group?</Text>
@@ -157,7 +120,7 @@ export default class SettingScreen extends React.Component {
                   <Text style = {styles.smallDes}>Set group id from invite email here:</Text>
                   <TextInput
                     style = {styles.textInput}
-                    onChangeText={(val) => {this.setState({group: val})}}
+                    onChangeText={(val) => {this.setState({groupDetails:{Group_ID: val}})}}
                     ref='group_id'
                     keyboardType='default'
                     returnKeyType='done'
@@ -184,7 +147,7 @@ export default class SettingScreen extends React.Component {
               }
             </View>
             <View style = {styles.buttonsView}>
-              <TouchableOpacity style = {styles.cancelButton} onPress = {()=>{this.toggleModal(false)}}>
+              <TouchableOpacity style = {styles.cancelButton} onPress = {()=>{this.toggleModal({isVisibleJoin: false})}}>
                 <Text style  = {{fontSize: 24, alignSelf: 'center'}}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity style = {styles.doneButton}>
@@ -193,6 +156,61 @@ export default class SettingScreen extends React.Component {
             </View>
             </View>
           </Modal>
+
+    );
+  }
+
+  render () {
+      return (
+        <View style={{height: '100%'}}>
+          <Image source={require('../chorewheel/Images/General_bg.png')} style={styles.backgroundImage} resizeMode='stretch' resizeMethod = 'scale' />
+          <View style = {{alignItems: 'center'}}><Text style = {styles.headerText}>Settings</Text></View>
+          <TouchableOpacity onPress = {()=>{
+              if(!this.state.modalProperties.isVisible){Actions.pop()}
+              else{this.toggleModal({isVisibleJoin: false})}
+            }
+          } style={{
+          position: 'absolute',
+          paddingTop: '4%',
+          paddingHorizontal: '10%'
+          }}>
+          <Icon name = 'arrow-left' color = 'white' size = {36} />
+        </TouchableOpacity>
+        <View style={styles.settingList}>
+          <RoundedButton onPress={this.onLogoutPress}>
+            Logout
+          </RoundedButton>
+          {this.state.user !== null && this.state.user.admin === true ? <RoundedButton onPress={this._onPress}>
+            Group Settings
+          </RoundedButton> : null}
+          {this.state.user !== null && this.state.user.admin === true ? <RoundedButton onPress={this._onPress}>
+            Chore List Settings
+          </RoundedButton> : null}
+          <RoundedButton>
+            Invite Group Memebers
+          </RoundedButton>
+          {this.state.user !== null && this.state.user.group_id === 0 ? <RoundedButton onPress = {this.onJoinGroupPress}>
+            Join Group
+          </RoundedButton>
+          :
+          <RoundedButton onPress = {()=>{
+            Alert.alert(
+              'Leave Group',
+              'Are you sure you want to leave your group?',
+              [
+                {text: 'No'},
+                {text: 'Yes', onPress: ()=>{this.onLeaveGroupPress()}}
+
+              ],
+              { cancelable: true }
+            )}}>
+            Leave Group
+          </RoundedButton>}
+          <RoundedButton>
+            Edit User Settings
+          </RoundedButton>
+          </View>
+          {this.joinModal()}
         </View>
       )
   }

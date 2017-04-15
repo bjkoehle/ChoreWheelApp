@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import {Metrics} from '../../Themes'
 
 export default StyleSheet.create({
   backgroundImage: {
@@ -27,8 +28,8 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   logo: {
-    width: 90,
-    height: 90
+    width: (Metrics.screenHeight*.15),
+    height: (Metrics.screenHeight*.15)
   },
   row: {
     marginTop: '3%',

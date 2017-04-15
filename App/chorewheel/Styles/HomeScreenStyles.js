@@ -18,8 +18,8 @@ export default StyleSheet.create({
   },
   circleImg: {
     justifyContent: 'space-around',
-    width:'100%',
-    height: '37.5%',
+    width:(Metrics.screenHeight*.375),
+    height: (Metrics.screenHeight*.375),
     margin: '2%'
   },
   headerText: {

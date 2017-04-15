@@ -1,12 +1,17 @@
 import React, {PropTypes} from 'react'
-import { Modal, Text, ListView, View, TouchableOpacity, StatusBar, Image, TextInput} from 'react-native'
+import { Picker, BackAndroid, Text, ListView, View, TouchableOpacity, StatusBar, Image, TextInput, TouchableWithoutFeedback} from 'react-native'
+import Modal from 'react-native-root-modal'
+
+const Item = Picker.Item;
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import styles from './Styles/ChoreTaskStyles'
+import { Metrics } from '../Themes'
 
-export default class ChoreTask extends React.Component {
+export default class ChoreTask  extends React.Component {
   static propTypes = {
     onPress: PropTypes.func,
+    group: PropTypes.object,
     data: PropTypes.object,
     user: PropTypes.object
   }
@@ -18,8 +23,8 @@ export default class ChoreTask extends React.Component {
                     animationType: 'fade',
                     modalVisible: false,
                     transparent: false,
-                  selectedSupportedOrientation: 0,
-                  currentOrientation: 'unknown',}};
+                    selectedSupportedOrientation: 0,
+                    currentOrientation: 'unknown',}};
   }
 
   componentWillMount(){
@@ -29,47 +34,118 @@ export default class ChoreTask extends React.Component {
     else{
       this.setState({color: 'indianred',size: 80, icon: 'times', iconStyle: styles.timesIcon});
     }
+    BackAndroid.addEventListener('hardwareBackPress', ()=>{
+      if(this.state.modalDetails.modalVisible){
+        this._setModalVisible(false);
+        return true
+      }
+      else{
+        return false
+      }
+    });
   }
+
+  componentWillUnmount(){
+     BackAndroid.removeEventListener('hardwareBackPress', ()=>{
+      if(this.state.modalDetails.modalVisible){
+        this._setModalVisible(false);
+        return true
+      }
+      else{
+        return false
+      }
+    });
+  }
+
 
   _setModalVisible = (visible) => {
     this.setState({modalDetails:{modalVisible: visible}});
   };
 
  onTaskPressed = () => {
-    this._setModalVisible(true);
+   this._setModalVisible(true);
+ }
+
+ renderItems = ()=>{
+  return this.props.group.user_list.map( (user, i) => {return <Item key = {i} value = {user.username} label = {user.username} />})
  }
 
  myModal = () => {
    return(
-      <View>
         <Modal
-          onRequestClose={() => this._setModalVisible(false)}
+          transparent = {true}
+          animationType = 'slide'
           visible = {this.state.modalDetails.modalVisible}
+          onRequestClose = {()=>{this._setModalVisible(false)}}
         >
-          <View style = {{height:'100%'}}>
-              <Image source={require('../../App/chorewheel/Images/General_bg.png')} style={styles.backgroundImage} resizeMode='stretch' resizeMethod = 'scale' />
-              <View style = {{alignItems: 'center'}}><Text style = {styles.headerText}>Edit Chore</Text>
-              </View>
-               <TextInput style = {styles.inputStyle}
-               defaultValue = {this.state.choreObj.choreName}
-               onChangeText = {(newName) => this.setState({choreObj:{choreName: newName}})}
-               />
-               <Text> Time </Text>
-               <Text> User </Text>
-               <TouchableOpacity onPress = {this._setModalVisible.bind(this,false)}>
-                <Text> Cancel </Text>
-               </TouchableOpacity>
-
+          <TouchableWithoutFeedback onPress = {()=>{this._setModalVisible(false)}}>
+            <View style  = {styles.modalBackground} />
+          </TouchableWithoutFeedback>
+          <View style = {styles.modalContent}>
+            <View style = {styles.row}>
+              <Text style = {[styles.rowLabel, {alignSelf: 'center'}]}>Chore Name:</Text>
+              <TextInput
+                style = {styles.textInput}
+                keyboardType='default'
+                returnKeyType='done'
+                autoCapitalize='none'
+                autoCorrect={false}
+                underlineColorAndroid='transparent'
+                placeholder='Username'
+                defaultValue = {this.state.choreObj.choreName}
+                onChangeText = {(newName) => {this.setState({choreObj:{...this.state.choreObj, choreName: newName}})}}
+              />
+            </View>
+            <View style = {styles.row}>
+              <Text style = {[styles.rowLabel, {alignSelf: 'center'}]}>Frequency:</Text>
+              <Picker
+                style = {[styles.textInput]}
+                mode = 'dropdown'
+                selectedValue = {this.state.choreObj.choreTime}
+                onValueChange = {(value)=>{this.setState({choreObj:{...this.state.choreObj, choreTime: value}})}}>
+                <Item label = 'Daily' value = 'Daily'/>
+                <Item label = 'Every Other Day' value = 'Every Other Day'/>
+                <Item label = 'Twice Weekly' value = 'Twice Weekly'/>
+                <Item label = 'Weekly' value = 'Weekly'/>
+                <Item label = 'Monthly' value = 'Monthly'/>
+              </Picker>
+            </View>
+            <View style = {styles.row}>
+              <Text style = {[styles.rowLabel, {alignSelf: 'center'}]}>User:</Text>
+              <Picker
+                style = {styles.textInput}
+                mode = 'dropdown'
+                selectedValue = {this.state.choreObj.choreTime}
+                onValueChange = {(value)=>{this.setState({choreObj:{...this.state.choreObj, userName: value}})}}>
+                {this.renderItems()}
+              </Picker>
+            </View>
+            <View style = {[styles.buttonsView, {marginHorizontal: '25%',marginBottom: '3%'}]}>
+              <TouchableOpacity style = {[styles.cancelButton, {marginRight: '0%'}]} onPress = {()=>{this._setModalVisible(false)}}>
+                <Text style  = {{fontSize: 24, alignSelf: 'center',color:'black'}}>Delete</Text>
+              </TouchableOpacity>
+            </View>
+            <View style = {styles.buttonsView}>
+              <TouchableOpacity style = {[styles.cancelButton, {backgroundColor: 'rgba(255,204,0,.8)'}]} onPress = {()=>{this._setModalVisible(false)}}>
+                <Text style  = {{fontSize: 24, alignSelf: 'center',color:'black'}}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.doneButton}>
+                <Text style  = {{fontSize: 24, alignSelf: 'center',color:'black'}}>Save</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </Modal>
-      </View>
    )
  }
 
   touchableView = () => {
-    return( <View style = {styles.choreRow}>
-              <TouchableOpacity style = {styles.touchableView} onPress={this.onTaskPressed}>
+    return(
+          <View>
+            <View style = {{}}>
               {this.myModal()}
+            </View>
+            <View style = {[styles.choreRow]}>
+              <TouchableOpacity style = {styles.touchableView} onPress={()=>{this.onTaskPressed()}}>
                 <Icon style = {this.state.iconStyle} name = {this.state.icon} color = {this.state.color} size = {this.state.size} />
                 <View style = {styles.choreText}>
                   <Text style = {styles.choreName}>
@@ -86,6 +162,7 @@ export default class ChoreTask extends React.Component {
                 </View>
               </TouchableOpacity>
             </View>
+          </View>
           );
   }
 
@@ -115,3 +192,5 @@ export default class ChoreTask extends React.Component {
     )
   }
 }
+
+

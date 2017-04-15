@@ -10,18 +10,20 @@ export default class ChoreTaskView extends React.Component {
 
   getData = async ()=>{
     //call to database here for chores
-    var result  = await AsyncStorage.getItem('CHORE_LIST');
-    var userOBJ = await AsyncStorage.getItem('UID');
-    if(result !== null){
-      this.setState({dataSource: this.ds.cloneWithRows(JSON.parse(result))});
-      this.render();
+    var choreList  = await AsyncStorage.getItem('CHORE_LIST');
+    var userObj = await AsyncStorage.getItem('UID');
+    var groupObj = await AsyncStorage.getItem('Group');
+    if(choreList !== null){
+      this.setState({dataSource: this.ds.cloneWithRows(JSON.parse(choreList))});
     }
     else{console.log('err')}
-
-    if(userOBJ !== null){
-      this.setState({user: JSON.parse(userOBJ)});
+    if(userObj !== null){
+      this.setState({user: JSON.parse(userObj)});
+    }
+    else{console.log('err')}
+    if(groupObj !== null){
+      this.setState({group: JSON.parse(groupObj)});
       this.render();
-      console.log(this.state.user)
     }
     else{console.log('err')}
   }
@@ -34,7 +36,7 @@ export default class ChoreTaskView extends React.Component {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.getData = this.getData.bind(this);
-    this.state = {dataSource: null, user: null};
+    this.state = {dataSource: null, user: null, group: null};
   }
 
   render() {
@@ -45,7 +47,7 @@ export default class ChoreTaskView extends React.Component {
         <TouchableOpacity onPress = {Actions.pop} style={{
           position: 'absolute',
           paddingTop: '4%',
-          paddingHorizontal: '10%',
+          marginHorizontal: '5%',
           zIndex: 10
         }}>
           <Icon name = 'arrow-left' color = 'white' size = {36} />
@@ -54,20 +56,22 @@ export default class ChoreTaskView extends React.Component {
           <TouchableOpacity style={{
             position: 'absolute',
             paddingTop: '2%',
-            paddingLeft: '90%',
+            marginLeft: '85%',
             zIndex: 10
           }}>
             <Icon name = 'plus' color = 'white' size = {36} />
           </TouchableOpacity>
           : null
         }
-        {this.state.dataSource === null ? null :
+        {this.state.group === null ? null :
           <ListView
             style = {styles.choreList}
             dataSource = {this.state.dataSource}
-            renderRow = { (rowData) => <ChoreTask data = {rowData}
+            renderRow = { (rowData) => (<ChoreTask data = {rowData}
                                                   user = {(this.state.user !== null && this.state.user.admin === true)
-                                                          ? this.state.user : null} />}
+                                                          ? this.state.user : null}
+                                                  group = {(this.state.group !== null && this.state.user.admin === true)
+                                                          ? this.state.group : null} />)}
           />
         }
       </View>

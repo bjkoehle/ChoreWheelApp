@@ -3,8 +3,8 @@ import { Fonts, Colors, Metrics } from '../../Themes/'
 
 export default StyleSheet.create({
   button: {
-    height: 100,
-    width: 100,
+    height: (Metrics.screenHeight*.162),
+    width: (Metrics.screenHeight*.162),
     borderRadius: 25,
     marginLeft: '5%',
     marginRight: '5%',

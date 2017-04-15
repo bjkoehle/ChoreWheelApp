@@ -4,6 +4,7 @@ import { AsyncStorage } from 'react-native'
 import Styles from './Styles/NavigationContainerStyles'
 
 // screens identified by the router
+import SplashScreen from '../chorewheel/SplashScreen'
 import LoginScreen from '../chorewheel/LoginScreen'
 import HomeScreen from '../chorewheel/HomeScreen'
 import ChoreTaskView from '../chorewheel/ChoreTaskView'
@@ -29,19 +30,19 @@ class NavigationRouter extends Component {
     let data = JSON.parse(await AsyncStorage.getItem('Group'));
     if(data === null){
       console.log('1')
-      Actions.loginScreen({type: ActionConst.REPLACE});
+      setTimeout(function(){Actions.loginScreen({type: ActionConst.REPLACE})}, 1500);
     }
     else if(data.Group_ID === 0){
       console.log('2')
       //Local Storage only?? how to set this up
-      Actions.homeScreen();
+      setTimeout(function(){Actions.homeScreen({type: ActionConst.REPLACE})}, 1500);
     }
     else{
       console.log('3')
       //Asuming that it is a number, later need to account for possible err
       //fetch user data from online
       let user = await AsyncStorage.getItem('UID');
-      Actions.homeScreen();
+      setTimeout(function(){Actions.homeScreen({type: ActionConst.REPLACE})}, 1500);
       // this.setState({isLoggedIn: true});
     }
   }
@@ -51,9 +52,10 @@ class NavigationRouter extends Component {
     return (
       <Router>
         <Scene key = 'root' hideNavBar>
-          <Scene key = 'loginScreen' component={LoginScreen} title = 'Login Screen' hideNavBar />
+          <Scene key = 'splashScreen' component = {SplashScreen} title = 'Spash' hideNavBar initial/>
+          <Scene key = 'loginScreen' component = {LoginScreen} title = 'Login Screen' hideNavBar />
           <Scene key = 'registerScreen' component = {RegisterScreen} title = 'Register Screen' hideNavBar />
-          <Scene key = 'homeScreen' component={HomeScreen} title = 'Home Screen' hideNavBar initial/>
+          <Scene key = 'homeScreen' component = {HomeScreen} title = 'Home Screen' hideNavBar />
           <Scene key = 'choreListScreen' component = {ChoreTaskView} title = 'Task List' hideNavBar />
           <Scene key = 'myTasksScreen' component = {MyTaskView} title = 'My Tasks' hideNavBar />
           <Scene key = 'groupScreen' component = {GroupUserView} title = 'Group' hideNavBar />
