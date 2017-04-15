@@ -1,7 +1,8 @@
 
 import React, { PropTypes } from 'react'
 import { Alert, Text, TextInput, Image, View, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native'
-import {Actions} from 'react-native-router-flux'
+import { Actions } from 'react-native-router-flux'
+import { login } from '../Services/ChoreWheelApi'
 import base64 from 'base-64'
 
 import styles from './Styles/RegisterScreenStyles'
@@ -11,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 export default class LoginScreen extends React.Component {
   constructor () {
     super();
+    this.success = null;
     this.state = {
       email: "",
       password: "",
@@ -21,8 +23,16 @@ export default class LoginScreen extends React.Component {
   onLoginPressed = () => {
     let verify = this.emailVerify(this.state.email);
     if(verify === true){
-      let login = {email: this.state.email, password: this.state.password};
+      let credentials = {email: this.state.email, password: this.state.password};
       // Call login here
+      login(credentials)
+      .then((res)=>{
+        if(res.ok === true) {
+          
+        } else {
+
+        }
+      });
     }
     else{
       // reset password
