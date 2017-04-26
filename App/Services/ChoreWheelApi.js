@@ -1,3 +1,5 @@
+import {AsyncStorage} from 'react-native'
+
 export function login(credentials) {
   return fetch('https://chorewheelandroid.herokuapp.com/api/user/login', {
       method: 'POST',
@@ -5,9 +7,7 @@ export function login(credentials) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(credentials)
-    })
-    .catch(error => {console.log(error)});
-
+    });
 }
 
 export function register(user) {
@@ -17,8 +17,7 @@ export function register(user) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(user)
-    })
-    .catch(error => {console.log(error)})
+    });
 }
 
 export function getUser(userId, auth) {
@@ -28,8 +27,7 @@ export function getUser(userId, auth) {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + auth
       },
-    })
-    .catch(error => {console.log(error)})
+    });
 }
 
 export function updateUser(user, auth) {
@@ -40,8 +38,7 @@ export function updateUser(user, auth) {
         'Authorization': 'Basic ' + auth
       },
       body: JSON.stringify(user)
-    })
-    .catch(error => {console.log(error)})
+    });
 }
 
 export function createGroup(group, userId, auth) {
@@ -52,31 +49,43 @@ export function createGroup(group, userId, auth) {
         'Authorization': 'Basic ' + auth
       },
       body: JSON.stringify(group)
-    })
-    .catch(error => {console.log(error)})
+    });
 }
 
 export function getGroup(groupId, auth) {
-  return fetch('https://chorewheelandroid.herokuapp.com/api/group/' + groupId, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + auth
-      },
-    })
-    .catch(error => {console.log(error)})
+  if(groupId !== 0){
+    return fetch('https://chorewheelandroid.herokuapp.com/api/group/' + groupId, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + auth
+        },
+      });
+  }
+  else{
+    return AsyncStorage.getItem('Group');
+  }
 }
 
-export function updateGroup(groupId, userId, auth) {
+export function joinGroup(groupId, userId, auth) {
   return fetch('https://chorewheelandroid.herokuapp.com/api/group/add/' + groupId + '/' + userId, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + auth
       },
-    })
-    .catch(error => {console.log(error)})
+    });
+}
+
+export function leaveGroup(groupId, userId, auth) {
+  return fetch('https://chorewheelandroid.herokuapp.com/api/group/remove/' + groupId + '/' + userId, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + auth
+      },
+    });
 }
 
 export function createChore(chore, groupId, auth) {
@@ -87,8 +96,7 @@ export function createChore(chore, groupId, auth) {
         'Authorization': 'Basic ' + auth
       },
       body: JSON.stringify(chore)
-    })
-    .catch(error => {console.log(error)})
+    });
 }
 
 export function getChore(choreId, auth) {
@@ -98,8 +106,7 @@ export function getChore(choreId, auth) {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + auth
       },
-    })
-    .catch(error => {console.log(error)})
+    });
 }
 
 export function updateChore(chore, auth) {
@@ -110,8 +117,7 @@ export function updateChore(chore, auth) {
         'Authorization': 'Basic ' + auth
       },
       body: JSON.stringify(chore)
-    })
-    .catch(error => {console.log(error)})
+    });
 }
 
 export function deleteChore(choreId, auth) {
@@ -121,6 +127,5 @@ export function deleteChore(choreId, auth) {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + auth
       },
-    })
-    .catch(error => {console.log(error)})
+    });
 }

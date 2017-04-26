@@ -3,6 +3,7 @@ import { View, Text, TextInput, Image, Button, TouchableOpacity, AsyncStorage, A
 import RoundedButton from '../../App/Components/myRoundedButton'
 import { SegmentedControlButton, Switcher } from 'nachos-ui'
 import Modal from 'react-native-modalbox'
+import { leaveGroup, getUser } from '../Services/ChoreWheelApi'
 
 import { Actions, ActionConst } from 'react-native-router-flux'
 import styles from './Styles/SettingScreenStyles'
@@ -23,7 +24,9 @@ export default class SettingScreen extends React.Component {
 
   getUser = async () => {
     let user = JSON.parse(await AsyncStorage.getItem('UID'));
-    this.setState({user: user});
+    let groupName = JSON.parse(await AsyncStorage.getItem('Group')).name;
+    this.setState({user: user, group: groupName});
+    console.log(this.state.group);
   }
 
   componentWillMount(){
@@ -35,7 +38,7 @@ export default class SettingScreen extends React.Component {
   }
 
   onLogoutPress = async () => {
-    await AsyncStorage.multiRemove(['UID', 'Group', 'CHORE_LIST']);
+    await AsyncStorage.multiRemove(['UID','Auth']);
     Actions.loginScreen({type: ActionConst.RESET});
   }
 
@@ -44,21 +47,28 @@ export default class SettingScreen extends React.Component {
   }
 
   onLeaveGroupPress = ()=>{
-    this.state.user.group_id = 0;
-    console.log('reached');
-    console.log(this.state.user.group_id)
-    this.setState({user: {...this.state.user, group_id: 0, admin:true}});
+    // this.state.user.groupId = 0;
+    this.setState({group: 'Default'});
     this.revertDefault();
   }
 
   revertDefault = async () => {
-    let default_list = [{id: 1, choreName: 'Example chores', choreTime: 'Time Frame appears here', done: true, userName: this.state.user.username, userId: this.state.user.User_id, groupId: 0},
-                          {id: 2, choreName: 'Put away dishes', choreTime: 'Daily', done: false, userName: this.state.user.username, userId: this.state.user.User_id, groupId: 0},
-                          {id: 3, choreName: 'Vaccum living-room', choreTime: 'Weekly', done: false, userName: this.state.user.username, userId: this.state.user.User_id, groupId: 0}];
-    let default_group = {Group_ID: 1, Group_Name: 'Cucks', user_list: [this.state.user]};
-    await AsyncStorage.setItem('UID', JSON.stringify(this.state.user));
-    await AsyncStorage.setItem('Group', JSON.stringify(default_group));
-    await AsyncStorage.setItem('CHORE_LIST', JSON.stringify(default_list));
+    let default_list = [{id: 1, choreName: 'Example chores',  done: true, choreTime: 'Time Frame appears here', userId: this.state.user.id, groupId: 0},
+                        {id: 2, choreName: 'Put away dishes', done: false, choreTime: 'Daily', userId: this.state.user.id, groupId: 0},
+                        {id: 3, choreName: 'Vaccum living-room', done: false, choreTime: 'Weekly', userId: this.state.user.id, groupId: 0}];
+    let default_group = {id: 0, users: [this.state.user], chores: default_list, name: 'Default'};
+    AsyncStorage.setItem('Group', JSON.stringify(default_group));
+    let auth = await AsyncStorage.getItem('Auth');
+    leaveGroup(this.state.user.groupId, this.state.user.id, auth).catch((error)=>{console.log(error)});
+    let newUser = await getUser(this.state.user.id, auth);
+    console.log(newUser);
+
+    if(newUser.ok === true){
+      this.setState({user: JSON.parse(newUser._bodyText)});
+      AsyncStorage.setItem('UID', newUser._bodyText);
+    }
+    else{console.log('error getting user');}
+    this.onLogoutPress();
   }
 
   joinModal = () =>{
@@ -165,31 +175,35 @@ export default class SettingScreen extends React.Component {
         <View style={{height: '100%'}}>
           <Image source={require('../chorewheel/Images/General_bg.png')} style={styles.backgroundImage} resizeMode='stretch' resizeMethod = 'scale' />
           <View style = {{alignItems: 'center'}}><Text style = {styles.headerText}>Settings</Text></View>
-          <TouchableOpacity onPress = {()=>{
-              if(!this.state.modalProperties.isVisible){Actions.pop()}
+          <TouchableOpacity
+            onPress = {()=>{
+              if(!this.state.modalProperties.isVisible){
+                Actions.pop({refresh: {groupName: this.state.group}})
+              }
               else{this.toggleModal({isVisibleJoin: false})}
-            }
-          } style={{
-          position: 'absolute',
-          paddingTop: '4%',
-          paddingHorizontal: '10%'
-          }}>
-          <Icon name = 'arrow-left' color = 'white' size = {36} />
-        </TouchableOpacity>
+            }}
+            style={{
+            position: 'absolute',
+            paddingTop: '4%',
+            paddingHorizontal: '10%'
+            }}>
+            <Icon name = 'arrow-left' color = 'white' size = {36} />
+          </TouchableOpacity>
         <View style={styles.settingList}>
           <RoundedButton onPress={this.onLogoutPress}>
             Logout
           </RoundedButton>
-          {this.state.user !== null && this.state.user.admin === true ? <RoundedButton onPress={this._onPress}>
+          {/*For now not accessable*/}
+          {this.state.user !== null && this.state.user.admin === true && false ? <RoundedButton onPress={this._onPress}>
             Group Settings
           </RoundedButton> : null}
-          {this.state.user !== null && this.state.user.admin === true ? <RoundedButton onPress={this._onPress}>
+          {this.state.user !== null && this.state.user.admin === true && false ? <RoundedButton onPress={this._onPress}>
             Chore List Settings
           </RoundedButton> : null}
           <RoundedButton>
             Invite Group Memebers
           </RoundedButton>
-          {this.state.user !== null && this.state.user.group_id === 0 ? <RoundedButton onPress = {this.onJoinGroupPress}>
+          {this.state.user !== null && this.state.user.groupId === 0 ? <RoundedButton onPress = {this.onJoinGroupPress}>
             Join Group
           </RoundedButton>
           :
@@ -206,9 +220,9 @@ export default class SettingScreen extends React.Component {
             )}}>
             Leave Group
           </RoundedButton>}
-          <RoundedButton>
+          {false ? <RoundedButton>
             Edit User Settings
-          </RoundedButton>
+          </RoundedButton> : null}
           </View>
           {this.joinModal()}
         </View>

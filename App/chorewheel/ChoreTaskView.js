@@ -1,7 +1,8 @@
 import React from 'react'
 import { ListView, View, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Actions } from 'react-native-router-flux'
+import { Actions, ActionConst } from 'react-native-router-flux'
+import { getGroup, createChore } from '../Services/ChoreWheelApi'
 
 import ChoreTask from '../Components/ChoreTask'
 import styles from './Styles/ChoreTaskViewStyles'
@@ -10,22 +11,25 @@ export default class ChoreTaskView extends React.Component {
 
   getData = async ()=>{
     //call to database here for chores
-    var choreList  = await AsyncStorage.getItem('CHORE_LIST');
-    var userObj = await AsyncStorage.getItem('UID');
-    var groupObj = await AsyncStorage.getItem('Group');
-    if(choreList !== null){
-      this.setState({dataSource: this.ds.cloneWithRows(JSON.parse(choreList))});
+    var userObj = JSON.parse(await AsyncStorage.getItem('UID'));
+    var groupObj = JSON.parse(await AsyncStorage.getItem('Group'));
+    var auth = await AsyncStorage.getItem('Auth');
+    if(userObj !== null && groupObj !== null && groupObj.id === 0){
+      this.setState({dataSource: this.ds.cloneWithRows(groupObj.chores)});
+      this.setState({user: userObj});
+      this.setState({group: groupObj});
     }
-    else{console.log('err')}
-    if(userObj !== null){
-      this.setState({user: JSON.parse(userObj)});
+    else if(userObj !== null && groupObj !== null && auth !== null){
+      let currentData = await getGroup(userObj.groupId, auth).catch((error)=>{console.log(error)});
+      let choreList = JSON.parse(currentData._bodyText).chores;
+      await AsyncStorage.setItem('Group',currentData._bodyText);
+      if(choreList !== []){
+        this.setState({dataSource: this.ds.cloneWithRows(choreList)});
+        this.setState({user: userObj});
+        this.setState({group: groupObj});
+      }
     }
-    else{console.log('err')}
-    if(groupObj !== null){
-      this.setState({group: JSON.parse(groupObj)});
-      this.render();
-    }
-    else{console.log('err')}
+    else{console.log('error setting data.')}
   }
 
   componentWillMount(){
@@ -53,7 +57,7 @@ export default class ChoreTaskView extends React.Component {
           <Icon name = 'arrow-left' color = 'white' size = {36} />
         </TouchableOpacity>
         {(this.state.user !== null && this.state.user.admin === true) ?
-          <TouchableOpacity style={{
+          <TouchableOpacity onPress = {()=>{Actions.addChoreScreen({type: ActionConst.REPLACE, user: this.state.user, group: this.state.group})}} style={{
             position: 'absolute',
             paddingTop: '2%',
             marginLeft: '85%',
@@ -66,12 +70,15 @@ export default class ChoreTaskView extends React.Component {
         {this.state.group === null ? null :
           <ListView
             style = {styles.choreList}
-            dataSource = {this.state.dataSource}
-            renderRow = { (rowData) => (<ChoreTask data = {rowData}
-                                                  user = {(this.state.user !== null && this.state.user.admin === true)
-                                                          ? this.state.user : null}
-                                                  group = {(this.state.group !== null && this.state.user.admin === true)
-                                                          ? this.state.group : null} />)}
+            dataSource ={this.state.dataSource}
+            renderRow = {
+              (rowData) =>
+                (<ChoreTask
+                  data = {rowData}
+                  user = {(this.state.user !== null && this.state.user.admin === true)
+                          ? this.state.user : null}
+                  group = {(this.state.group !== null && this.state.user.admin === true)
+                          ? this.state.group : null} />)}
           />
         }
       </View>

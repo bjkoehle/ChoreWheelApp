@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Scene, Router, Actions, ActionConst } from 'react-native-router-flux'
 import { AsyncStorage } from 'react-native'
-import Styles from './Styles/NavigationContainerStyles'
 
 // screens identified by the router
 import SplashScreen from '../chorewheel/SplashScreen'
@@ -12,6 +11,7 @@ import MyTaskView from '../chorewheel/MyTasksView'
 import GroupUserView from '../chorewheel/GroupUserView'
 import RegisterScreen from '../chorewheel/RegisterScreen'
 import SettingScreen from '../chorewheel/SettingScreen'
+import AddChoreScreen from '../chorewheel/AddChoreScreen'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -26,24 +26,12 @@ class NavigationRouter extends Component {
   }
 
   async checkLogin(){
-    //await AsyncStorage.multiRemove(['UID', 'Group', 'CHORE_LIST']); //This is for reseting hard coded data
-    let data = JSON.parse(await AsyncStorage.getItem('Group'));
+    let data = JSON.parse(await AsyncStorage.getItem('UID'));//User in local
     if(data === null){
-      console.log('1')
       setTimeout(function(){Actions.loginScreen({type: ActionConst.REPLACE})}, 1500);
     }
-    else if(data.Group_ID === 0){
-      console.log('2')
-      //Local Storage only?? how to set this up
-      setTimeout(function(){Actions.homeScreen({type: ActionConst.REPLACE})}, 1500);
-    }
     else{
-      console.log('3')
-      //Asuming that it is a number, later need to account for possible err
-      //fetch user data from online
-      let user = await AsyncStorage.getItem('UID');
       setTimeout(function(){Actions.homeScreen({type: ActionConst.REPLACE})}, 1500);
-      // this.setState({isLoggedIn: true});
     }
   }
 
@@ -60,6 +48,7 @@ class NavigationRouter extends Component {
           <Scene key = 'myTasksScreen' component = {MyTaskView} title = 'My Tasks' hideNavBar />
           <Scene key = 'groupScreen' component = {GroupUserView} title = 'Group' hideNavBar />
           <Scene key = 'settingsScreen' component = {SettingScreen} title = 'Settings' hideNavBar />
+          <Scene key = 'addChoreScreen' component = {AddChoreScreen} title = 'Add Chore' hideNavBar />
         </Scene>
       </Router>
     )

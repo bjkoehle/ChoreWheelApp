@@ -12,10 +12,10 @@ export default class GroupUserView extends React.Component {
     //call to database here for chores
     var result  = await AsyncStorage.getItem('Group');
     if(result !== null){
-      this.setState({dataSource: this.ds.cloneWithRows(JSON.parse(result).user_list)});
+      this.setState({dataSource: this.ds.cloneWithRows(JSON.parse(result).users)});
       this.render();
     }
-    else{console.log('err')}
+    else{console.log('error getting group')}
   }
 
   componentWillMount(){

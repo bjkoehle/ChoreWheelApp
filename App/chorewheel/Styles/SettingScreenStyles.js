@@ -79,5 +79,14 @@ export default StyleSheet.create({
     backgroundColor: '#32cd329f',
     paddingVertical: 10,
     flex: 1
+  },
+  container:{
+    marginTop: '30%',
+    marginBottom: '5.5%',
+    marginHorizontal: '10%',
+    paddingHorizontal: '10%',
+    paddingVertical: '10%',
+    borderRadius: 15,
+    backgroundColor: 'rgba(240,240,240,1)'
   }
 })

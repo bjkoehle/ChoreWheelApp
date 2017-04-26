@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import { Text, ListView, View, TouchableOpacity, Alert, AsyncStorage} from 'react-native'
 import {Actions} from 'react-native-router-flux'
+import {updateChore} from '../Services/ChoreWheelApi'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import styles from './Styles/ChoreTaskStyles'
@@ -32,15 +33,22 @@ export default class ChoreTask extends React.Component {
 
   setChoreData = async (setDone) =>{
     try{
-      let currentData  = JSON.parse(await AsyncStorage.getItem('CHORE_LIST'));
-      if(currentData !== null){
-        for(let i = 0; i < currentData.length ; i++){
-          if(currentData[i].id === this.state.data.id){
-            currentData[i].done = setDone;
+      let currentData = JSON.parse(await AsyncStorage.getItem('Group'));
+      let auth = await AsyncStorage.getItem('Auth');
+      if(currentData !== null && auth !== null){
+        for(let i = 0; i < currentData.chores.length ; i++){
+          if(currentData.chores[i].id === this.state.data.id){
+            currentData.chores[i].done = setDone;
+            let local = await AsyncStorage.setItem('Group', JSON.stringify(currentData));
+            if(currentData.id === 0){
+              let remote = updateChore(currentData.chores[i],auth);
+              console.log(local+' Local');
+              console.log(remote+ ' remote');
+            }
+            else{console.log(local+' Local')}
             break;
           }
         }
-        await AsyncStorage.setItem('CHORE_LIST', JSON.stringify(currentData));
       }
       else{
         console.log('No data');
@@ -52,7 +60,7 @@ export default class ChoreTask extends React.Component {
   }
 
   iconRender(){
-    if(this.props.data.done === true){
+    if(this.state.data.done === true){
       this.setState({color: 'forestgreen',size: 70, icon: 'check-square-o', iconStyle: styles.checkIcon});
     }
     else{

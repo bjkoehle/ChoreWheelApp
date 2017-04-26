@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import { Picker, BackAndroid, Text, ListView, View, TouchableOpacity, StatusBar, Image, TextInput, TouchableWithoutFeedback} from 'react-native'
 import Modal from 'react-native-root-modal'
+import { updateChore, deleteChore } from '../Services/ChoreWheelApi'
 
 const Item = Picker.Item;
 
@@ -66,8 +67,24 @@ export default class ChoreTask  extends React.Component {
    this._setModalVisible(true);
  }
 
+ deleteChorePressed = () => {
+
+ }
+
+ saveChorePressed = () => {
+
+ }
+
  renderItems = ()=>{
-  return this.props.group.user_list.map( (user, i) => {return <Item key = {i} value = {user.username} label = {user.username} />})
+  return this.props.group.users.map( (user, i) => {return <Item key = {i} value = {user.userId} label = {user.username} />})
+ }
+
+ getUserName = ()=>{
+   for(let i = 0; i < this.props.group.users.length; i++){
+     if(this.props.data.userId === this.props.group.users[i].id){
+       return this.props.group.users[i].userName;
+     }
+   }
  }
 
  myModal = () => {
@@ -115,13 +132,13 @@ export default class ChoreTask  extends React.Component {
               <Picker
                 style = {styles.textInput}
                 mode = 'dropdown'
-                selectedValue = {this.state.choreObj.choreTime}
-                onValueChange = {(value)=>{this.setState({choreObj:{...this.state.choreObj, userName: value}})}}>
+                selectedValue = {this.state.choreObj.userId}
+                onValueChange = {(value)=>{this.setState({choreObj:{...this.state.choreObj, userId: value}})}}>
                 {this.renderItems()}
               </Picker>
             </View>
             <View style = {[styles.buttonsView, {marginHorizontal: '25%',marginBottom: '3%'}]}>
-              <TouchableOpacity style = {[styles.cancelButton, {marginRight: '0%'}]} onPress = {()=>{this._setModalVisible(false)}}>
+              <TouchableOpacity style = {[styles.cancelButton, {marginRight: '0%'}]} onPress = {()=>{this.deleteChorePressed(),this._setModalVisible(false)}}>
                 <Text style  = {{fontSize: 24, alignSelf: 'center',color:'black'}}>Delete</Text>
               </TouchableOpacity>
             </View>
@@ -129,7 +146,7 @@ export default class ChoreTask  extends React.Component {
               <TouchableOpacity style = {[styles.cancelButton, {backgroundColor: 'rgba(255,204,0,.8)'}]} onPress = {()=>{this._setModalVisible(false)}}>
                 <Text style  = {{fontSize: 24, alignSelf: 'center',color:'black'}}>Cancel</Text>
               </TouchableOpacity>
-              <TouchableOpacity style = {styles.doneButton}>
+              <TouchableOpacity style = {styles.doneButton} onPress = {()=>{this.saveChorePressed(),this._setModalVisible(false)}}>
                 <Text style  = {{fontSize: 24, alignSelf: 'center',color:'black'}}>Save</Text>
               </TouchableOpacity>
             </View>
@@ -156,7 +173,7 @@ export default class ChoreTask  extends React.Component {
                       {this.props.data.choreTime}
                     </Text>
                     <Text style = {styles.choreTime}>
-                      {this.props.data.userName}
+                      {this.getUserName}
                     </Text>
                   </View>
                 </View>
@@ -178,7 +195,7 @@ export default class ChoreTask  extends React.Component {
                   {this.props.data.choreTime}
                 </Text>
                 <Text style = {styles.choreTime}>
-                  {this.props.data.userName}
+                  {this.getUserName}
                 </Text>
               </View>
             </View>
